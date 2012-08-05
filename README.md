@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/rochefort/gem-search.png)](http://travis-ci.org/rochefort/gem-search)
+
 # gem-search
 
 gem-search is a command line utitlity like rubygems('gem search').  
