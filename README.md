@@ -42,7 +42,7 @@ webkit-rspec-formatter (2.0.2)                          613      1573
 e.g.:
 
 ```
-$ gem-search factory-girl -s v
+$ gem-search webkit -s v
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 capybara-webkit (0.12.1)                              24863    185214
