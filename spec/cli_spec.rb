@@ -41,7 +41,7 @@ EOS
         end
       end
 
-      context 'with sort option: [vd]version_downloads' do
+      context 'with sort option: [v]version_downloads' do
         it "should display rubygems ordering by name" do
           capture(:stdout) { @cli.search('factory_girl', 'version_downloads') }.should == <<'EOS'
 NAME                                                DL(ver)   DL(all)
@@ -53,7 +53,7 @@ EOS
         end
       end
 
-      context 'with sort option: [d]download' do
+      context 'with sort option: [a]download' do
         it "should display rubygems ordering by name" do
           capture(:stdout) { @cli.search('factory_girl', 'download') }.should == <<'EOS'
 NAME                                                DL(ver)   DL(all)
