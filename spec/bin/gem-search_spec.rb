@@ -4,10 +4,10 @@ BIN = 'bin/gem-search'
 USAGE = <<-EOS
 Usage: gem-search gem_name [options]
 
-    -s, --sort         Sort by name of item.
-                        [n]ame (default)
-                        [v]er  (displayed name: DL(ver))
-                        [a]ll  (displayed name: DL(all))
+    -s, --sort         Sort by the item.
+                        [n]ame :default  eg. gem-search webkit
+                        [v]er  :DL(ver)  eg. gem-search webkit -s v
+                        [a]ll  :DL(all)  eg. gem-search webkit -s a
     -v, --version      Display the version.
     -h, --help         Display this help message.
 EOS
