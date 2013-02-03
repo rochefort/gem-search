@@ -22,7 +22,7 @@ OPT_SORT = {
   'a' => 'downloads',
 }
 
-puts opts and exit if (ARGV.size == 0)
+puts opts and exit if (ARGV.size == 0) && (!opts.to_hash.values.include?(true))
 exit if opts['h']
 
 $:.unshift File.dirname(__FILE__) + '/../lib'
