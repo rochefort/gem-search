@@ -25,8 +25,9 @@ module Gem::Search
           render_header(fmt_size)
           render_body(gems, fmt_size)
         end
-      rescue
+      rescue => e
         puts 'An unexpected Network error has occurred.'
+        puts e
       end
     end
 

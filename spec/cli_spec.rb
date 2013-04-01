@@ -14,7 +14,7 @@ describe Gem::Search::CLI do
           to_return(:status => 500, :body => '[]')
       end
       it 'should display a network error message' do
-        capture(:stdout) { @cli.search('network_error_orccurred') }.should == "An unexpected Network error has occurred.\n"
+        capture(:stdout) { @cli.search('network_error_orccurred') }.should match(/An unexpected Network error has occurred.\n/)
       end
     end
 
