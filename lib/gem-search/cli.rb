@@ -12,9 +12,9 @@ module Gem::Search
 
       opt_sort ||= 'name'
       url = "#{SEARCH_URL}#{query}"
-      
-      begin  
-        open(url) do |f|
+
+      begin
+        open_uri(url) do |f|
           gems = JSON.parse(f.read)
           if gems.size.zero?
             puts 'We did not find results.'
@@ -31,6 +31,17 @@ module Gem::Search
     end
 
     private
+      def open_uri(url, &block)
+        option = {}
+        proxy = URI.parse(url).find_proxy
+        if proxy
+          if proxy.user && proxy.password
+            option[:proxy_http_basic_authentication] = [proxy, proxy.usesr, proxy.password]
+          end
+        end
+        open(url, option, &block)
+      end
+
       def ruled_line_size(gems)
         line_size = DEFAULT_RULED_LINE_SIZE.dup
         max_name_size = gems.map { |gem| "#{gem['name']} (#{gem['version']})".size }.max
