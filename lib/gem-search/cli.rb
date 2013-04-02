@@ -35,10 +35,8 @@ module Gem::Search
       def open_uri(url, &block)
         option = {}
         proxy = URI.parse(url).find_proxy
-        if proxy
-          if proxy.user && proxy.password
-            option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
-          end
+        if proxy && proxy.user && proxy.password
+          option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
         end
         open(url, option, &block)
       end
