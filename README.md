@@ -1,4 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/rochefort/gem-search.png)](http://travis-ci.org/rochefort/gem-search)
+[![Build Status](https://secure.travis-ci.org/rochefort/gem-search.png)](http://travis-ci.org/rochefort/gem-search)  
+[<img src="https://gemnasium.com/rochefort/gem-search.png" />](https://gemnasium.com/rochefort/gem-search)
 
 # gem-search
 
