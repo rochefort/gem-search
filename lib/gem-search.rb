@@ -1,6 +1,6 @@
 module Gem
   module Search
-    autoload :CLI      , 'gem-search/cli'
+    autoload :Executor   , 'gem-search/executor'
     autoload :Rendering, 'gem-search/rendering'
     autoload :VERSION  , 'gem-search/version'
   end

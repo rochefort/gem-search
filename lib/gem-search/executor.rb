@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 module Gem::Search
-  class CLI
+  class Executor
     include Gem::Search::Rendering
     BASE_URL   = 'https://rubygems.org'
     SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query="
@@ -21,7 +21,7 @@ module Gem::Search
             return
           end
           gems_sort!(gems, opt_sort)
-          CLI.render(gems)
+          Executor.render(gems)
         end
       rescue => e
         puts 'An unexpected Network error has occurred.'

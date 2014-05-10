@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Gem::Search::CLI do
+describe Gem::Search::Executor do
   describe '#search' do
     before do
-      @cli = Gem::Search::CLI.new
+      @executor = Gem::Search::Executor.new
       stub_request(:get, build_search_uri('factory_girl')).
         to_return(:status => 200, :body => dummy_search_result)
     end
@@ -14,7 +14,7 @@ describe Gem::Search::CLI do
           to_return(:status => 500, :body => '[]')
       end
       it 'should display a network error message' do
-        capture(:stdout) { @cli.search('network_error_orccurred') }.should match(/An unexpected Network error has occurred.\n/)
+        capture(:stdout) { @executor.search('network_error_orccurred') }.should match(/An unexpected Network error has occurred.\n/)
       end
     end
 
@@ -24,14 +24,14 @@ describe Gem::Search::CLI do
           to_return(:status => 200, :body => '[]')
       end
       it 'should display a nonexistence message' do
-        capture(:stdout) { @cli.search('no_match_gem_name') }.should == "We did not find results.\n"
+        capture(:stdout) { @executor.search('no_match_gem_name') }.should == "We did not find results.\n"
       end
     end
 
     context 'with existing gem' do
       context 'with no sort option' do
         it 'should display rubygems ordering by name' do
-          capture(:stdout) { @cli.search('factory_girl') }.should == <<-'EOS'
+          capture(:stdout) { @executor.search('factory_girl') }.should == <<-'EOS'
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 factory_girl (3.6.0)                                    541   2042859
@@ -43,7 +43,7 @@ EOS
 
       context 'with sort option: [v]version_downloads' do
         it "should display rubygems ordering by name" do
-          capture(:stdout) { @cli.search('factory_girl', 'version_downloads') }.should == <<'EOS'
+          capture(:stdout) { @executor.search('factory_girl', 'version_downloads') }.should == <<'EOS'
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 factory_girl_rails (3.5.0)                            39724   1238780
@@ -55,7 +55,7 @@ EOS
 
       context 'with sort option: [a]download' do
         it "should display rubygems ordering by name" do
-          capture(:stdout) { @cli.search('factory_girl', 'download') }.should == <<'EOS'
+          capture(:stdout) { @executor.search('factory_girl', 'download') }.should == <<'EOS'
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 factory_girl (3.6.0)                                    541   2042859
@@ -73,7 +73,7 @@ EOS
             to_return(:status => 200, :body => dummy_search_result_name_size_is_42)
         end
         it "should be 50 characters" do
-          capture(:stdout) { @cli.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
+          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
@@ -87,7 +87,7 @@ EOS
             to_return(:status => 200, :body => dummy_search_result_name_size_is_43)
         end
         it "should be 51 characters" do
-          capture(:stdout) { @cli.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
+          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
 NAME                                                 DL(ver)   DL(all)
 --------------------------------------------------- -------- ---------
 size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
@@ -99,9 +99,9 @@ EOS
 
   private
     def build_search_uri(query)
-      "#{Gem::Search::CLI::SEARCH_URL}#{query}"
+      "#{Gem::Search::Executor::SEARCH_URL}#{query}"
     end
-    
+
     def dummy_search_result
       # top 3 gems searching with 'factory_girl'
       # https://rubygems.org/api/v1/search.json?query=factory_girl
