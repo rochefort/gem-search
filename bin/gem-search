@@ -1,36 +1,6 @@
 #!/usr/bin/env ruby
-require 'slop'
-
-def opt_description(msgs)
-  ind = ' ' * 22
-  msgs.inject { |rtn, msg| rtn << "\n#{ind}#{msg}" }
-end
-
-opts = Slop.parse(help: true) do
-  banner "Usage: gem-search gem_name [options]\n"
-  on :s, :sort, opt_description([
-      'Sort by the item.',
-      '  [n]ame :default  eg. gem-search webkit',
-      '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
-      '  [a]ll  :DL(all)  eg. gem-search webkit -s a'
-    ]), :argument => :optional
-  on :v, :version, 'Display the version.'
-end
-
-OPT_SORT = {
-  'v' => 'version_downloads',
-  'a' => 'downloads',
-}
-
-puts opts and exit if (ARGV.size == 0) && (!opts.to_hash.values.include?(true))
-exit if opts['h']
-
-$:.unshift File.dirname(__FILE__) + '/../lib'
+$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
 require 'gem-search'
-if opts['v']
-  puts "gem-search #{Gem::Search::VERSION}"
-  exit
-end
 
-gs = Gem::Search::Executor.new
-gs.search(ARGV[0], OPT_SORT[opts['sort']])
+Gem::Search::Command.new.run
+
