@@ -30,6 +30,12 @@ describe 'bin/gem-search' do
     it_behaves_like 'display an usage'
   end
 
+  # non-exisitng option: -x
+  context 'with -x' do
+    subject { `#{BIN} -x` }
+    it_behaves_like 'display an usage'
+  end
+
   context 'with -v' do
     subject { `#{BIN} -v` }
     it 'should display an usage' do
