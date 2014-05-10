@@ -5,29 +5,35 @@ module Gem::Search
   class Executor
     include Gem::Search::Rendering
     BASE_URL   = 'https://rubygems.org'
-    SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query="
+    SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
 
     def search(query, opt_sort='name')
       return unless query
 
-      url = "#{SEARCH_URL}#{query}"
-      open_uri(url) do |f|
-        gems = JSON.parse(f.read)
-        raise Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
-
-        gems_sort!(gems, opt_sort)
-        Executor.render(gems)
+      print 'Searching '
+      gems = []
+      (1..20).each do |n|
+        print '.'
+        url = SEARCH_URL % [query, n]
+        gems_by_page = search_rubygems(url)
+        break if gems_by_page.size.zero?
+        gems += gems_by_page
       end
+      puts
+
+      raise Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
+      gems_sort!(gems, opt_sort)
+      Executor.render(gems)
     end
 
     private
-      def open_uri(url, &block)
+      def search_rubygems(url)
         option = {}
         proxy = URI.parse(url).find_proxy
         if proxy && proxy.user && proxy.password
           option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
         end
-        open(url, option, &block)
+        JSON.parse(open(url, option).read)
       end
 
       def gems_sort!(gems, opt_sort)

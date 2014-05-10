@@ -21,6 +21,10 @@ def capture(stream)
   result
 end
 
+def load_http_stubs(file_name)
+  open(File.join(File.dirname(__FILE__), 'http_stubs', file_name)).read
+end
+
 class String
   def unindent
     gsub(/^\s+\|/, '')
