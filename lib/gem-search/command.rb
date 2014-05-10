@@ -29,7 +29,7 @@ module Gem::Search
       version if OPTS['v']
       validate
 
-      gs = Gem::Search::Executor.new
+      gs = Executor.new
       gs.search(ARGV[0], ENABLE_SORT_OPT[OPTS['sort']])
     end
 
