@@ -72,9 +72,9 @@ describe Executor do
 
     describe 'multiple page' do
       before do
-        stub_request_search(1, load_http_stubs('search_json_cucumber-_1.json'))
-        stub_request_search(2, load_http_stubs('search_json_cucumber-_2.json'))
-        stub_request_search(3, load_http_stubs('search_json_cucumber-_3.json'))
+        stub_request_search(1, load_http_stubs('cucumber-_1.json'))
+        stub_request_search(2, load_http_stubs('cucumber-_2.json'))
+        stub_request_search(3, load_http_stubs('cucumber-_3.json'))
         stub_request_no_result_with_page(4)
       end
       let(:query) { 'cucumber-' }
