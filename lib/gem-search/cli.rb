@@ -43,7 +43,7 @@ module Gem::Search
 
       def ruled_line_size(gems)
         line_size = DEFAULT_RULED_LINE_SIZE.dup
-        max_name_size = gems.map { |gem| "#{gem['name']} (#{gem['version']})".size }.max
+        max_name_size = gems.map { |gem| "#{gem['name'] } (#{gem['version']})".size }.max
         line_size[0] =  max_name_size if max_name_size > line_size[0]
         line_size
       end
