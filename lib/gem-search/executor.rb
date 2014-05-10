@@ -10,9 +10,7 @@ module Gem::Search
     def search(query, opt_sort='name')
       return unless query
 
-      opt_sort ||= 'name'
       url = "#{SEARCH_URL}#{query}"
-
       begin
         open_uri(url) do |f|
           gems = JSON.parse(f.read)
