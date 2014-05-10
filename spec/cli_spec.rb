@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe Gem::Search::Executor do
+include Gem::Search
+
+describe Executor do
   describe '#search' do
     before do
       @executor = Gem::Search::Executor.new
@@ -13,9 +15,7 @@ describe Gem::Search::Executor do
         stub_request(:get, build_search_uri('network_error_orccurred')).
           to_return(:status => 500, :body => '[]')
       end
-      it 'should display a network error message' do
-        capture(:stdout) { @executor.search('network_error_orccurred') }.should match(/An unexpected Network error has occurred.\n/)
-      end
+      it { expect{ @executor.search('no_match_gem_name') }.to raise_error(Exception) }
     end
 
     context 'with nonexistence gem' do
@@ -23,9 +23,7 @@ describe Gem::Search::Executor do
         stub_request(:get, build_search_uri('no_match_gem_name')).
           to_return(:status => 200, :body => '[]')
       end
-      it 'should display a nonexistence message' do
-        capture(:stdout) { @executor.search('no_match_gem_name') }.should == "We did not find results.\n"
-      end
+      it { expect{ @executor.search('no_match_gem_name') }.to raise_error(LibraryNotFound) }
     end
 
     context 'with existing gem' do

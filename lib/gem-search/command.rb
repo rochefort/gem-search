@@ -31,6 +31,13 @@ module Gem::Search
 
       gs = Executor.new
       gs.search(ARGV[0], ENABLE_SORT_OPT[OPTS['sort']])
+    rescue LibraryNotFound => e
+      puts e.message
+      abort
+    rescue => e
+      puts "An unexpected #{e.class} has occurred."
+      puts e.message
+      abort
     end
 
     private

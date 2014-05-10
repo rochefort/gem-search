@@ -11,19 +11,12 @@ module Gem::Search
       return unless query
 
       url = "#{SEARCH_URL}#{query}"
-      begin
-        open_uri(url) do |f|
-          gems = JSON.parse(f.read)
-          if gems.size.zero?
-            puts 'We did not find results.'
-            return
-          end
-          gems_sort!(gems, opt_sort)
-          Executor.render(gems)
-        end
-      rescue => e
-        puts 'An unexpected Network error has occurred.'
-        puts e
+      open_uri(url) do |f|
+        gems = JSON.parse(f.read)
+        raise Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
+
+        gems_sort!(gems, opt_sort)
+        Executor.render(gems)
       end
     end
 
