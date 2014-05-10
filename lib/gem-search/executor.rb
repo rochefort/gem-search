@@ -6,13 +6,14 @@ module Gem::Search
     include Gem::Search::Rendering
     BASE_URL   = 'https://rubygems.org'
     SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
+    MAX_REQUEST_COUNT = 20
 
     def search(query, opt_sort='name')
       return unless query
 
       print 'Searching '
       gems = []
-      (1..20).each do |n|
+      (1..MAX_REQUEST_COUNT).each do |n|
         print '.'
         url = SEARCH_URL % [query, n]
         gems_by_page = search_rubygems(url)
