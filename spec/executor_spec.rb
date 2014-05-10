@@ -29,37 +29,37 @@ describe Executor do
     context 'with existing gem' do
       context 'with no sort option' do
         it 'should display rubygems ordering by name' do
-          capture(:stdout) { @executor.search('factory_girl') }.should == <<-'EOS'
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-factory_girl (3.6.0)                                    541   2042859
-factory_girl_generator (0.0.3)                         8015     15547
-factory_girl_rails (3.5.0)                            39724   1238780
-EOS
+          capture(:stdout) { @executor.search('factory_girl') }.should == <<-'EOS'.unindent
+            |NAME                                                DL(ver)   DL(all)
+            |-------------------------------------------------- -------- ---------
+            |factory_girl (3.6.0)                                    541   2042859
+            |factory_girl_generator (0.0.3)                         8015     15547
+            |factory_girl_rails (3.5.0)                            39724   1238780
+          EOS
         end
       end
 
       context 'with sort option: [v]version_downloads' do
         it "should display rubygems ordering by name" do
-          capture(:stdout) { @executor.search('factory_girl', 'version_downloads') }.should == <<'EOS'
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-factory_girl_rails (3.5.0)                            39724   1238780
-factory_girl_generator (0.0.3)                         8015     15547
-factory_girl (3.6.0)                                    541   2042859
-EOS
+          capture(:stdout) { @executor.search('factory_girl', 'version_downloads') }.should == <<-'EOS'.unindent
+            |NAME                                                DL(ver)   DL(all)
+            |-------------------------------------------------- -------- ---------
+            |factory_girl_rails (3.5.0)                            39724   1238780
+            |factory_girl_generator (0.0.3)                         8015     15547
+            |factory_girl (3.6.0)                                    541   2042859
+          EOS
         end
       end
 
       context 'with sort option: [a]download' do
         it "should display rubygems ordering by name" do
-          capture(:stdout) { @executor.search('factory_girl', 'download') }.should == <<'EOS'
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-factory_girl (3.6.0)                                    541   2042859
-factory_girl_rails (3.5.0)                            39724   1238780
-factory_girl_generator (0.0.3)                         8015     15547
-EOS
+          capture(:stdout) { @executor.search('factory_girl', 'download') }.should == <<-'EOS'.unindent
+            |NAME                                                DL(ver)   DL(all)
+            |-------------------------------------------------- -------- ---------
+            |factory_girl (3.6.0)                                    541   2042859
+            |factory_girl_rails (3.5.0)                            39724   1238780
+            |factory_girl_generator (0.0.3)                         8015     15547
+          EOS
         end
       end
     end
@@ -71,11 +71,11 @@ EOS
             to_return(:status => 200, :body => dummy_search_result_name_size_is_42)
         end
         it "should be 50 characters" do
-          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
-EOS
+          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<-'EOS'.unindent
+            |NAME                                                DL(ver)   DL(all)
+            |-------------------------------------------------- -------- ---------
+            |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
+          EOS
         end
       end
 
@@ -85,11 +85,11 @@ EOS
             to_return(:status => 200, :body => dummy_search_result_name_size_is_43)
         end
         it "should be 51 characters" do
-          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<'EOS'
-NAME                                                 DL(ver)   DL(all)
---------------------------------------------------- -------- ---------
-size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
-EOS
+          capture(:stdout) { @executor.search('size_is_42_2345678901234567890123456789012') }.should == <<-'EOS'.unindent
+            |NAME                                                 DL(ver)   DL(all)
+            |--------------------------------------------------- -------- ---------
+            |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
+          EOS
         end
       end
     end

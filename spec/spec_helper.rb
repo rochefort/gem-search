@@ -17,3 +17,9 @@ def capture(stream)
 
   result
 end
+
+class String
+  def unindent
+    gsub(/^\s+\|/, '')
+  end
+end
