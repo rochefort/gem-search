@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 require File.expand_path('../lib/gem-search/version', __FILE__)
 
 Gem::Specification.new do |gem|
@@ -20,5 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'webmock'
   gem.add_development_dependency 'rake', '~> 0.9.2.2'
-  gem.add_development_dependency 'rdoc', '~> 3.12'
+
+  gem.add_development_dependency 'rspec',       '~> 2.14.1'
+  gem.add_development_dependency 'simplecov',   '~> 0.8.2'
 end
