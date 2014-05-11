@@ -31,7 +31,7 @@ describe Executor do
       let(:query) {'factory_girl'}
 
       context 'with no sort option' do
-        it 'should display rubygems ordering by name' do
+        it 'display rubygems ordering by name' do
           capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -44,7 +44,7 @@ describe Executor do
       end
 
       context 'with sort option: [v]version_downloads' do
-        it "should display rubygems ordering by name" do
+        it 'display rubygems ordering by name' do
           capture(:stdout) { @executor.search(query, 'version_downloads') }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -57,7 +57,7 @@ describe Executor do
       end
 
       context 'with sort option: [a]download' do
-        it "should display rubygems ordering by name" do
+        it 'display rubygems ordering by name' do
           capture(:stdout) { @executor.search(query, 'download') }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -78,7 +78,7 @@ describe Executor do
         stub_request_no_result_with_page(4)
       end
       let(:query) { 'cucumber-' }
-      it 'should display rubygems ordering by name' do
+      it 'display rubygems ordering by name' do
         capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
           |Searching ....
           |NAME                                                DL(ver)   DL(all)
@@ -157,7 +157,7 @@ describe Executor do
           stub_request_no_result_with_page(2)
         end
         let(:query) {'size_is_42_2345678901234567890123456789012'}
-        it "should be 50 characters" do
+        it 'is 50 characters' do
           capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -173,7 +173,7 @@ describe Executor do
           stub_request_no_result_with_page(2)
         end
         let(:query) {'size_is_43_23456789012345678901234567890123'}
-        it "should be 51 characters" do
+        it 'is 51 characters' do
           capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                 DL(ver)   DL(all)
