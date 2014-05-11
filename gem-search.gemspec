@@ -14,11 +14,11 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Gem::Search::VERSION
 
-  gem.add_dependency 'slop'
-  gem.add_dependency 'json'
+  gem.add_dependency 'slop', '~>3.5.0'
+  gem.add_dependency 'json', '~>1.8.1'
 
-  gem.add_development_dependency 'webmock'
-  gem.add_development_dependency 'rake', '~> 0.9.2.2'
+  gem.add_development_dependency 'webmock', '~>1.17.4'
+  gem.add_development_dependency 'rake',    '~> 0.9.2.2'
 
   gem.add_development_dependency 'rspec',       '~> 2.14.1'
   gem.add_development_dependency 'simplecov',   '~> 0.8.2'
