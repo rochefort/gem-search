@@ -1,20 +1,20 @@
 require File.expand_path('../lib/gem-search/version', __FILE__)
 
+def install_message
+  s = ''
+  s << "\xf0\x9f\x8d\xba  " if or_over_mac_os_lion?
+  s << "Thanks for installing!"
+end
+
+def or_over_mac_os_lion?
+  return false unless RUBY_PLATFORM =~ /darwin/
+
+  macos_full_version = `/usr/bin/sw_vers -productVersion`.chomp
+  macos_version = macos_full_version[/10\.\d+/]
+  return macos_version >= '10.7'  # 10.7 is lion
+end
+
 Gem::Specification.new do |gem|
-  def install_message
-    s = ''
-    s << "\xf0\x9f\x8d\xba  " if or_over_mac_os_lion?
-    s << "Thanks for installing!"
-  end
-
-  def or_over_mac_os_lion?
-    return false unless RUBY_PLATFORM =~ /darwin/
-
-    macos_full_version = `/usr/bin/sw_vers -productVersion`.chomp
-    macos_version = macos_full_version[/10\.\d+/]
-    return macos_version >= '10.7'  # 10.7 is lion
-  end
-
   gem.authors       = ["rochefort"]
   gem.email         = ["terasawan@gmail.com"]
   gem.homepage      = "https://github.com/rochefort/gem-search"
