@@ -1,7 +1,7 @@
-[![Build Status](https://secure.travis-ci.org/rochefort/gem-search.png)](http://travis-ci.org/rochefort/gem-search)
-[![Dependency Status](https://gemnasium.com/rochefort/gem-search.png)](https://gemnasium.com/rochefort/gem-search)
-[![Code Climate](https://codeclimate.com/github/rochefort/gem-search.png)](https://codeclimate.com/github/rochefort/gem-search)
-[![Gem Version](https://badge.fury.io/rb/gem-search.svg)](http://badge.fury.io/rb/gem-search)
+[![Build Status](http://img.shields.io/travis/rochefort/gem-search.svg?style=flat)](http://travis-ci.org/rochefort/gem-search)
+[![Dependency Status](http://img.shields.io/gemnasium/rochefort/gem-search.svg?style=flat)](https://gemnasium.com/rochefort/gem-search)
+[![Code Climate](http://img.shields.io/codeclimate/github/rochefort/gem-search.svg?style=flat)](https://codeclimate.com/github/rochefort/gem-search)
+[![Gem Version](http://img.shields.io/gem/v/gem-search.svg?style=flat)](http://badge.fury.io/rb/gem-search)
 
 # gem-search
 
