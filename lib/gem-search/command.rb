@@ -30,7 +30,11 @@ module Gem::Search
       validate
 
       gs = Executor.new
-      gs.search(ARGV[0], ENABLE_SORT_OPT[OPTS['sort']])
+      if ENABLE_SORT_OPT[OPTS['sort']]
+        gs.search(ARGV[0], ENABLE_SORT_OPT[OPTS['sort']])
+      else
+        gs.search(ARGV[0])
+      end
     rescue LibraryNotFound => e
       puts e.message
       abort
