@@ -31,8 +31,12 @@ module Gem::Search
       def search_rubygems(url)
         option = {}
         proxy = URI.parse(url).find_proxy
-        if proxy && proxy.user && proxy.password
-          option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
+        if proxy
+          if proxy.user && proxy.password
+            option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
+          else
+            option[:proxy] = proxy
+          end
         end
         JSON.parse(open(url, option).read)
       end
