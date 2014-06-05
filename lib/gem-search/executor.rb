@@ -8,9 +8,8 @@ module Gem::Search
     SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
     MAX_REQUEST_COUNT = 20
 
-    def search(query, opt_sort='name')
+    def search(query, opt_sort='downloads')
       return unless query
-
       print 'Searching '
       gems = []
       (1..MAX_REQUEST_COUNT).each do |n|

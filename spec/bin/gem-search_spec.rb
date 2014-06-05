@@ -5,9 +5,10 @@ USAGE = <<-EOS
 Usage: gem-search gem_name [options]
 
     -s, --sort         Sort by the item.
-                        [n]ame :default  eg. gem-search webkit
-                        [v]er  :DL(ver)  eg. gem-search webkit -s v
+                        default [a]ll
                         [a]ll  :DL(all)  eg. gem-search webkit -s a
+                        [v]er  :DL(ver)  eg. gem-search webkit -s v
+                        [n]ame :         eg. gem-search webkit -s n
     -v, --version      Display the version.
     -h, --help         Display this help message.
 EOS

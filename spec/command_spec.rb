@@ -29,7 +29,7 @@ describe Command do
         Command::OPTS.stub(:[]).with('sort').and_return('a')
       end
       it 'called with sort option' do
-        @executor.should_receive(:search).with(query, 'name').once
+        @executor.should_receive(:search).with(query, 'downloads').once
         Command.new.run
       end
     end

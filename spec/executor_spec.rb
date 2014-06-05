@@ -37,8 +37,21 @@ describe Executor do
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
-            |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl_rails (3.5.0)                            39724   1238780
+            |factory_girl_generator (0.0.3)                         8015     15547
+          EOS
+        end
+      end
+
+      context 'with sort option: [a]download' do
+        it 'display rubygems ordering by name' do
+          capture(:stdout) { @executor.search(query, 'download') }.should == <<-'EOS'.unindent
+            |Searching ..
+            |NAME                                                DL(ver)   DL(all)
+            |-------------------------------------------------- -------- ---------
+            |factory_girl (3.6.0)                                    541   2042859
+            |factory_girl_rails (3.5.0)                            39724   1238780
+            |factory_girl_generator (0.0.3)                         8015     15547
           EOS
         end
       end
@@ -56,15 +69,15 @@ describe Executor do
         end
       end
 
-      context 'with sort option: [a]download' do
+      context 'with sort option: [n]ame' do
         it 'display rubygems ordering by name' do
-          capture(:stdout) { @executor.search(query, 'download') }.should == <<-'EOS'.unindent
+          capture(:stdout) { @executor.search(query, 'name') }.should == <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
-            |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
+            |factory_girl_rails (3.5.0)                            39724   1238780
           EOS
         end
       end
@@ -79,7 +92,7 @@ describe Executor do
       end
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
-        capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
+        capture(:stdout) { @executor.search(query, 'name') }.should == <<-'EOS'.unindent
           |Searching ....
           |NAME                                                DL(ver)   DL(all)
           |-------------------------------------------------- -------- ---------

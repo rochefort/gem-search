@@ -12,15 +12,17 @@ module Gem::Search
     ENABLE_SORT_OPT = {
       'v' => 'version_downloads',
       'a' => 'downloads',
+      'n' => 'name',
     }
 
     OPTS = Slop.parse(help: true) do
       banner "Usage: gem-search gem_name [options]\n"
       on :s, :sort, opt_description([
           'Sort by the item.',
-          '  [n]ame :default  eg. gem-search webkit',
+          '  default [a]ll',
+          '  [a]ll  :DL(all)  eg. gem-search webkit -s a',
           '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
-          '  [a]ll  :DL(all)  eg. gem-search webkit -s a'
+          '  [n]ame :         eg. gem-search webkit -s n',
         ]), :argument => :optional
       on :v, :version, 'Display the version.'
     end
