@@ -32,7 +32,7 @@ describe Executor do
 
       context 'with no sort option' do
         it 'display rubygems ordering by name' do
-          capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -45,7 +45,7 @@ describe Executor do
 
       context 'with sort option: [a]download' do
         it 'display rubygems ordering by name' do
-          capture(:stdout) { @executor.search(query, 'download') }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query, 'download') }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -58,7 +58,7 @@ describe Executor do
 
       context 'with sort option: [v]version_downloads' do
         it 'display rubygems ordering by name' do
-          capture(:stdout) { @executor.search(query, 'version_downloads') }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query, 'version_downloads') }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -71,7 +71,7 @@ describe Executor do
 
       context 'with sort option: [n]ame' do
         it 'display rubygems ordering by name' do
-          capture(:stdout) { @executor.search(query, 'name') }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query, 'name') }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -92,7 +92,7 @@ describe Executor do
       end
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
-        capture(:stdout) { @executor.search(query, 'name') }.should == <<-'EOS'.unindent
+        expect(capture(:stdout) { @executor.search(query, 'name') }).to eq <<-'EOS'.unindent
           |Searching ....
           |NAME                                                DL(ver)   DL(all)
           |-------------------------------------------------- -------- ---------
@@ -171,7 +171,7 @@ describe Executor do
         end
         let(:query) {'size_is_42_2345678901234567890123456789012'}
         it 'is 50 characters' do
-          capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -187,7 +187,7 @@ describe Executor do
         end
         let(:query) {'size_is_43_23456789012345678901234567890123'}
         it 'is 51 characters' do
-          capture(:stdout) { @executor.search(query) }.should == <<-'EOS'.unindent
+          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
             |Searching ..
             |NAME                                                 DL(ver)   DL(all)
             |--------------------------------------------------- -------- ---------
