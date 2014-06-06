@@ -6,6 +6,10 @@ SimpleCov.start
 require 'webmock/rspec'
 require 'gem-search'
 
+RSpec.configure do |config|
+  config.expose_dsl_globally = false
+end
+
 # http://d.hatena.ne.jp/POCHI_BLACK/20100324
 # this method is written by wycats
 def capture(stream)

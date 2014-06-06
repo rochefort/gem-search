@@ -2,7 +2,7 @@ require 'spec_helper'
 
 include Gem::Search
 
-describe Executor do
+RSpec.describe Executor do
   describe '#search' do
     before do
       @executor = Executor.new
