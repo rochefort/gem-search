@@ -5,7 +5,7 @@ include Gem::Search
 describe Executor do
   describe '#search' do
     before do
-      @executor = Gem::Search::Executor.new
+      @executor = Executor.new
     end
 
     context 'when a network error occurred' do
