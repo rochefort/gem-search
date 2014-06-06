@@ -32,7 +32,7 @@ RSpec.describe Executor do
 
       context 'with no sort option' do
         it 'display rubygems ordering by name' do
-          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -40,12 +40,13 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
+          expect{ @executor.search(query) }.to output(res).to_stdout
         end
       end
 
       context 'with sort option: [a]download' do
         it 'display rubygems ordering by name' do
-          expect(capture(:stdout) { @executor.search(query, 'download') }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -53,12 +54,13 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
+          expect{ @executor.search(query, 'download') }.to output(res).to_stdout
         end
       end
 
       context 'with sort option: [v]version_downloads' do
         it 'display rubygems ordering by name' do
-          expect(capture(:stdout) { @executor.search(query, 'version_downloads') }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -66,12 +68,13 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl (3.6.0)                                    541   2042859
           EOS
+          expect{ @executor.search(query, 'version_downloads') }.to output(res).to_stdout
         end
       end
 
       context 'with sort option: [n]ame' do
         it 'display rubygems ordering by name' do
-          expect(capture(:stdout) { @executor.search(query, 'name') }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
@@ -79,6 +82,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl_rails (3.5.0)                            39724   1238780
           EOS
+          expect{ @executor.search(query, 'name') }.to output(res).to_stdout
         end
       end
     end
@@ -92,7 +96,7 @@ RSpec.describe Executor do
       end
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
-        expect(capture(:stdout) { @executor.search(query, 'name') }).to eq <<-'EOS'.unindent
+        res = <<-'EOS'.unindent
           |Searching ....
           |NAME                                                DL(ver)   DL(all)
           |-------------------------------------------------- -------- ---------
@@ -160,6 +164,7 @@ RSpec.describe Executor do
           |tasty-cucumber-client (0.1.10)                         1504     11518
           |vagrant-cucumber-host (0.1.14)                          163       163
         EOS
+        expect{ @executor.search(query, 'name') }.to output(res).to_stdout
       end
     end
 
@@ -171,12 +176,13 @@ RSpec.describe Executor do
         end
         let(:query) {'size_is_42_2345678901234567890123456789012'}
         it 'is 50 characters' do
-          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
           EOS
+          expect{ @executor.search(query) }.to output(res).to_stdout
         end
       end
 
@@ -187,12 +193,13 @@ RSpec.describe Executor do
         end
         let(:query) {'size_is_43_23456789012345678901234567890123'}
         it 'is 51 characters' do
-          expect(capture(:stdout) { @executor.search(query) }).to eq <<-'EOS'.unindent
+          res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                 DL(ver)   DL(all)
             |--------------------------------------------------- -------- ---------
             |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
           EOS
+          expect{ @executor.search(query) }.to output(res).to_stdout
         end
       end
     end
