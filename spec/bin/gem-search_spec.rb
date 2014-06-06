@@ -15,7 +15,7 @@ EOS
 
 
 RSpec.shared_examples 'display an usage' do
-  it 'should display an usage' do
+  it 'display an usage' do
     should == USAGE
   end
 end
@@ -38,7 +38,7 @@ RSpec.describe 'bin/gem-search' do
 
   context 'with -v' do
     subject { `#{BIN} -v` }
-    it 'should display an usage' do
+    it 'display an usage' do
       should == "gem-search #{Gem::Search::VERSION}\n"
     end
   end
