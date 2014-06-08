@@ -11,7 +11,7 @@ RSpec.describe Command do
       stub_request_search(1, dummy_search_result)
       stub_request_no_result_with_page(2)
     end
-    let(:query) {'factory-girl'}
+    let(:query) {'factory_girl'}
 
     context 'with no sort option' do
       before do
