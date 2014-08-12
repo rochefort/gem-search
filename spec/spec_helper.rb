@@ -15,11 +15,11 @@ def load_http_stubs(file_name)
 end
 
 def stub_request_search(page, body)
-  stub_request(:get, build_search_uri(query, page)).to_return(:status => 200, :body => body)
+  stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: body)
 end
 
 def stub_request_no_result_with_page(page)
-  stub_request(:get, build_search_uri(query, page)).to_return(:status => 200, :body => '[]')
+  stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: '[]')
 end
 
 def build_search_uri(query, page)
