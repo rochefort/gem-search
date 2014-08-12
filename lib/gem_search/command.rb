@@ -18,12 +18,12 @@ module Gem::Search
     OPTS = Slop.parse(help: true) do
       banner "Usage: gem-search gem_name [options]\n"
       on :s, :sort, opt_description([
-          'Sort by the item.',
-          '  default [a]ll',
-          '  [a]ll  :DL(all)  eg. gem-search webkit -s a',
-          '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
-          '  [n]ame :         eg. gem-search webkit -s n',
-        ]), :argument => :optional
+        'Sort by the item.',
+        '  default [a]ll',
+        '  [a]ll  :DL(all)  eg. gem-search webkit -s a',
+        '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
+        '  [n]ame :         eg. gem-search webkit -s n',
+      ]), argument: :optional
       on :v, :version, 'Display the version.'
     end
 
@@ -47,21 +47,22 @@ module Gem::Search
     end
 
     private
-      def version
-        puts "gem-search #{Gem::Search::VERSION}"
+
+    def version
+      puts "gem-search #{Gem::Search::VERSION}"
+      exit
+    end
+
+    def validate
+      if (ARGV.size == 0)
+        puts OPTS
+        abort
+      end
+
+      if ARGV.any? { |arg| arg.match(/\A-/) }
+        puts OPTS
         exit
       end
-
-      def validate
-        if (ARGV.size == 0)
-          puts OPTS
-          abort
-        end
-
-        if ARGV.any? { |arg| arg.match(/\A-/) }
-          puts OPTS
-          exit
-        end
-      end
+    end
   end
 end

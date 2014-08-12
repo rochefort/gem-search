@@ -10,17 +10,17 @@ RSpec.describe Executor do
 
     context 'when a network error occurred' do
       before do
-        stub_request(:get, build_search_uri(query, 1)).
-          to_return(:status => 500, :body => '[]')
+        stub_request(:get, build_search_uri(query, 1))
+          .to_return(status: 500, body: '[]')
       end
-      let(:query) {'network_error_orccurred'}
-      it { expect{ @executor.search(query) }.to raise_error(Exception) }
+      let(:query) { 'network_error_orccurred' }
+      it { expect { @executor.search(query) }.to raise_error(Exception) }
     end
 
     context 'when no matching gem' do
       before { stub_request_no_result_with_page(1) }
-      let(:query) {'no_match_gem_name'}
-      it { expect{ @executor.search(query) }.to raise_error(LibraryNotFound) }
+      let(:query) { 'no_match_gem_name' }
+      it { expect { @executor.search(query) }.to raise_error(LibraryNotFound) }
     end
 
     describe 'sorting' do
@@ -28,7 +28,7 @@ RSpec.describe Executor do
         stub_request_search(1, dummy_search_result)
         stub_request_no_result_with_page(2)
       end
-      let(:query) {'factory_girl'}
+      let(:query) { 'factory_girl' }
 
       context 'with no sort option' do
         it 'display rubygems ordering by name' do
@@ -40,7 +40,7 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect{ @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query) }.to output(res).to_stdout
         end
       end
 
@@ -54,7 +54,7 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect{ @executor.search(query, 'download') }.to output(res).to_stdout
+          expect { @executor.search(query, 'download') }.to output(res).to_stdout
         end
       end
 
@@ -68,7 +68,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl (3.6.0)                                    541   2042859
           EOS
-          expect{ @executor.search(query, 'version_downloads') }.to output(res).to_stdout
+          expect { @executor.search(query, 'version_downloads') }.to output(res).to_stdout
         end
       end
 
@@ -82,7 +82,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl_rails (3.5.0)                            39724   1238780
           EOS
-          expect{ @executor.search(query, 'name') }.to output(res).to_stdout
+          expect { @executor.search(query, 'name') }.to output(res).to_stdout
         end
       end
     end
@@ -164,7 +164,7 @@ RSpec.describe Executor do
           |tasty-cucumber-client (0.1.10)                         1504     11518
           |vagrant-cucumber-host (0.1.14)                          163       163
         EOS
-        expect{ @executor.search(query, 'name') }.to output(res).to_stdout
+        expect { @executor.search(query, 'name') }.to output(res).to_stdout
       end
     end
 
@@ -174,7 +174,7 @@ RSpec.describe Executor do
           stub_request_search(1, dummy_search_result_name_size_is_42)
           stub_request_no_result_with_page(2)
         end
-        let(:query) {'size_is_42_2345678901234567890123456789012'}
+        let(:query) { 'size_is_42_2345678901234567890123456789012' }
         it 'is 50 characters' do
           res = <<-'EOS'.unindent
             |Searching ..
@@ -182,7 +182,7 @@ RSpec.describe Executor do
             |-------------------------------------------------- -------- ---------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
           EOS
-          expect{ @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query) }.to output(res).to_stdout
         end
       end
 
@@ -191,7 +191,7 @@ RSpec.describe Executor do
           stub_request_search(1, dummy_search_result_name_size_is_43)
           stub_request_no_result_with_page(2)
         end
-        let(:query) {'size_is_43_23456789012345678901234567890123'}
+        let(:query) { 'size_is_43_23456789012345678901234567890123' }
         it 'is 51 characters' do
           res = <<-'EOS'.unindent
             |Searching ..
@@ -199,26 +199,27 @@ RSpec.describe Executor do
             |--------------------------------------------------- -------- ---------
             |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
           EOS
-          expect{ @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query) }.to output(res).to_stdout
         end
       end
     end
   end
 
   private
-    def dummy_search_result_name_size_is_42
-      [{"name"=>"size_is_42_2345678901234567890123456789012",
-        "downloads"=>1000,
-        "version"=>"0.0.1",
-        "version_downloads"=>100}
-      ].to_json
-    end
 
-    def dummy_search_result_name_size_is_43
-      [{"name"=>"size_is_43_23456789012345678901234567890123",
-        "downloads"=>2000,
-        "version"=>"0.0.2",
-        "version_downloads"=>200}
-      ].to_json
-    end
+  def dummy_search_result_name_size_is_42
+    [{"name"=>"size_is_42_2345678901234567890123456789012",
+      "downloads"=>1000,
+      "version"=>"0.0.1",
+      "version_downloads"=>100}
+    ].to_json
+  end
+
+  def dummy_search_result_name_size_is_43
+    [{"name"=>"size_is_43_23456789012345678901234567890123",
+      "downloads"=>2000,
+      "version"=>"0.0.2",
+      "version_downloads"=>200}
+    ].to_json
+  end
 end
