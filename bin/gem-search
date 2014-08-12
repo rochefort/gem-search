@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require 'gem-search'
+require 'gem_search'
 
 Gem::Search::Command.new.run

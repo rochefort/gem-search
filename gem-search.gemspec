@@ -1,4 +1,4 @@
-require File.expand_path('../lib/gem-search/version', __FILE__)
+require File.expand_path('../lib/gem_search/version', __FILE__)
 
 def install_message
   s = ''
