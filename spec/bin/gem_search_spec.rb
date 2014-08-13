@@ -9,6 +9,7 @@ Usage: gem-search gem_name [options]
                         [a]ll  :DL(all)  eg. gem-search webkit -s a
                         [v]er  :DL(ver)  eg. gem-search webkit -s v
                         [n]ame :         eg. gem-search webkit -s n
+    -d, --detail       Display homepage url of gem
     -v, --version      Display the version.
     -h, --help         Display this help message.
 

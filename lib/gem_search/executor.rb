@@ -11,7 +11,7 @@ module Gem::Search
 
     MAX_REQUEST_COUNT = 20
 
-    def search(query, opt_sort = 'downloads')
+    def search(query, opts)
       return unless query
       print 'Searching '
       gems = []
@@ -25,8 +25,8 @@ module Gem::Search
       puts
 
       fail Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
-      gems_sort!(gems, opt_sort)
-      Executor.render(gems)
+      gems_sort!(gems, opts[:sort])
+      Executor.render(gems, opts[:detail])
     end
 
     def browse(gem)

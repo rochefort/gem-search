@@ -20,7 +20,29 @@ RSpec.describe Executor do
     context 'when no matching gem' do
       before { stub_request_search_no_result_with_page(query, 1) }
       let(:query) { 'no_match_gem_name' }
-      it { expect { @executor.search(query) }.to raise_error(LibraryNotFound) }
+      it { expect { @executor.search(query, default_opts) }.to raise_error(LibraryNotFound) }
+    end
+
+    describe 'with detail' do
+      before do
+        stub_request_search(query, 1, dummy_search_result)
+        stub_request_search_no_result_with_page(query, 2)
+      end
+      let(:query) { 'factory_girl' }
+
+      context 'with no sort option' do
+        it 'display rubygems ordering by DL(all)' do
+          res = <<-'EOS'.unindent
+            |Searching ..
+            |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
+            |-------------------------------------------------- -------- --------- ------------------------------------------------------------
+            |factory_girl (3.6.0)                                    541   2042859 https://github.com/thoughtbot/factory_girl                  
+            |factory_girl_rails (3.5.0)                            39724   1238780 http://github.com/thoughtbot/factory_girl_rails             
+            |factory_girl_generator (0.0.3)                         8015     15547 http://github.com/leshill/factory_girl_generator            
+          EOS
+          expect { @executor.search(query, default_opts(detail: true)) }.to output(res).to_stdout
+        end
+      end
     end
 
     describe 'sorting' do
@@ -31,7 +53,7 @@ RSpec.describe Executor do
       let(:query) { 'factory_girl' }
 
       context 'with no sort option' do
-        it 'display rubygems ordering by name' do
+        it 'display rubygems ordering by DL(all)' do
           res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -40,12 +62,12 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect { @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
       context 'with sort option: [a]download' do
-        it 'display rubygems ordering by name' do
+        it 'display rubygems ordering by DL(all)' do
           res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -54,12 +76,12 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect { @executor.search(query, 'download') }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
       context 'with sort option: [v]version_downloads' do
-        it 'display rubygems ordering by name' do
+        it 'display rubygems ordering by DL(ver)' do
           res = <<-'EOS'.unindent
             |Searching ..
             |NAME                                                DL(ver)   DL(all)
@@ -68,7 +90,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl (3.6.0)                                    541   2042859
           EOS
-          expect { @executor.search(query, 'version_downloads') }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts(sort: 'version_downloads')) }.to output(res).to_stdout
         end
       end
 
@@ -82,7 +104,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl_rails (3.5.0)                            39724   1238780
           EOS
-          expect { @executor.search(query, 'name') }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
         end
       end
     end
@@ -164,7 +186,7 @@ RSpec.describe Executor do
           |tasty-cucumber-client (0.1.10)                         1504     11518
           |vagrant-cucumber-host (0.1.14)                          163       163
         EOS
-        expect { @executor.search(query, 'name') }.to output(res).to_stdout
+        expect { @executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
       end
     end
 
@@ -182,7 +204,7 @@ RSpec.describe Executor do
             |-------------------------------------------------- -------- ---------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
           EOS
-          expect { @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
@@ -199,7 +221,7 @@ RSpec.describe Executor do
             |--------------------------------------------------- -------- ---------
             |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
           EOS
-          expect { @executor.search(query) }.to output(res).to_stdout
+          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
     end

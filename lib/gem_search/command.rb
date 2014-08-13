@@ -24,6 +24,7 @@ module Gem::Search
         '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
         '  [n]ame :         eg. gem-search webkit -s n',
       ]), argument: :optional
+      on :d, :detail, 'Display homepage url of gem'
       on :v, :version, 'Display the version.'
 
       command 'browse' do
@@ -51,11 +52,7 @@ module Gem::Search
       validate
 
       gs = Executor.new
-      if ENABLE_SORT_OPT[OPTS['sort']]
-        gs.search(ARGV[0], ENABLE_SORT_OPT[OPTS['sort']])
-      else
-        gs.search(ARGV[0])
-      end
+      gs.search(ARGV[0], setup_opts)
     rescue LibraryNotFound => e
       puts e.message
       abort
@@ -63,6 +60,13 @@ module Gem::Search
       puts "An unexpected #{e.class} has occurred."
       puts e.message
       abort
+    end
+
+    def setup_opts
+      {
+        sort: ENABLE_SORT_OPT[OPTS['sort']] || 'downloads',
+        detail: OPTS.detail?
+      }
     end
 
     private

@@ -18,7 +18,7 @@ RSpec.describe Command do
         allow(Command::OPTS).to receive(:[]).and_return(nil)
       end
       it 'called with no sort option' do
-        expect(@executor).to receive(:search).with(query).once
+        expect(@executor).to receive(:search).with(query, default_opts).once
         Command.new.run
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Command do
         allow(Command::OPTS).to receive(:[]).with('sort').and_return('a')
       end
       it 'called with sort option' do
-        expect(@executor).to receive(:search).with(query, 'downloads').once
+        expect(@executor).to receive(:search).with(query, default_opts(sort: 'downloads')).once
         Command.new.run
       end
     end

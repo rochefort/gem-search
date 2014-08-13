@@ -4,6 +4,7 @@ require 'simplecov'
 SimpleCov.start
 
 require 'webmock/rspec'
+# require 'pry'
 require 'gem_search'
 
 RSpec.configure do |config|
@@ -115,6 +116,12 @@ def dummy_search_result
     "bug_tracker_uri"=>nil,
     "dependencies"=>{"development"=>[], "runtime"=>[]}}
   ].to_json
+end
+
+def default_opts(merge_opts = nil)
+  opts = { sort: 'downloads', detail: false }
+  opts.merge!(merge_opts) if merge_opts
+  opts
 end
 
 class String
