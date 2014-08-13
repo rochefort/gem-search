@@ -1,3 +1,7 @@
+## v0.1.4
+
+* Fix cannnot open gem url when gem has no homepage url. [b476b28]
+
 ## v0.1.3
 
 * Implement a feature that is shown a homepage url when detail ooption is selected [f89d9c2]
