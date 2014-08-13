@@ -1,3 +1,7 @@
+## v0.1.3
+
+* Implement a feature that is shown a homepage url when detail ooption is selected [f89d9c2]
+
 ## v0.1.2
 
 * Correspond to linux with browse option [80bb881]
