@@ -83,6 +83,12 @@ gtk-webkit-ruby (0.0.3)                                 289       289
 capybara-webkit-remote (0.0.4)                          209       838
 ```
 
+### Browse
+It open rubygem's homepage in the system's default web browser.
+
+	gem-search browse 'gem_name'
+
+
 
 ## Contributing
 
