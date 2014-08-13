@@ -7,7 +7,7 @@ module Gem::Search
     BASE_URL   = 'https://rubygems.org'
     SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
     GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
-    GEM_URL    = "#{BASE_URL}/%s"
+    GEM_URL    = "#{BASE_URL}/gems/%s"
 
     MAX_REQUEST_COUNT = 20
 
