@@ -3,7 +3,7 @@ require File.expand_path('../lib/gem_search/version', __FILE__)
 def install_message
   s = ''
   s << "\xf0\x9f\x8d\xba  " if or_over_mac_os_lion?
-  s << "Thanks for installing!"
+  s << 'Thanks for installing!'
 end
 
 def or_over_mac_os_lion?
@@ -11,21 +11,21 @@ def or_over_mac_os_lion?
 
   macos_full_version = `/usr/bin/sw_vers -productVersion`.chomp
   macos_version = macos_full_version[/10\.\d+/]
-  return macos_version >= '10.7'  # 10.7 is lion
+  macos_version >= '10.7'  # 10.7 is lion
 end
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["rochefort"]
-  gem.email         = ["terasawan@gmail.com"]
-  gem.homepage      = "https://github.com/rochefort/gem-search"
-  gem.summary       = "search gems with using rubygems.org API"
+  gem.authors       = ['rochefort']
+  gem.email         = ['terasawan@gmail.com']
+  gem.homepage      = 'https://github.com/rochefort/gem-search'
+  gem.summary       = 'search gems with using rubygems.org API'
   gem.description   = gem.summary
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "gem-search"
-  gem.require_paths = ["lib"]
+  gem.name          = 'gem-search'
+  gem.require_paths = ['lib']
   gem.version       = Gem::Search::VERSION
 
   gem.post_install_message = install_message
