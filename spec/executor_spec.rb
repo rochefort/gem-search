@@ -224,7 +224,7 @@ RSpec.describe Executor do
     context 'when no homepage_uri' do
       before do
         url = Executor::GEM_URL % query
-        allow(@executor).to receive(:system).with('open', url)
+        allow(@executor).to receive(:system).with(anything(), url)
         stub_request_gems(query, load_http_stubs("gems/#{query}.json"))
       end
       let(:query) { 'git-trend_no_homepage' }
@@ -238,7 +238,7 @@ RSpec.describe Executor do
       before do
         http_stub = load_http_stubs("gems/#{query}.json")
         url = JSON.parse(http_stub)['homepage_uri']
-        allow(@executor).to receive(:system).with('open', url)
+        allow(@executor).to receive(:system).with(anything(), url)
         stub_request_gems(query, http_stub)
       end
       let(:query) { 'git-trend' }
