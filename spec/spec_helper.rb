@@ -14,16 +14,30 @@ def load_http_stubs(file_name)
   open(File.join(File.dirname(__FILE__), 'http_stubs', file_name)).read
 end
 
+# stubs for search API
 def stub_request_search(query, page, body)
   stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: body)
 end
 
-def stub_request_no_result_with_page(query, page)
+def stub_request_search_no_result_with_page(query, page)
   stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: '[]')
 end
 
 def build_search_uri(query, page)
-  Executor::SEARCH_URL % [query, page]
+  Executor::SEARCH_API % [query, page]
+end
+
+# stubs for gems API
+def stub_request_gems(query, body)
+  stub_request(:get, build_gems_uri(query)).to_return(status: 200, body: body)
+end
+
+def stub_request_gems_no_result(query)
+  stub_request(:get, build_gems_uri(query)).to_return(status: 404, body: '[]')
+end
+
+def build_gems_uri(query)
+  Executor::GEM_API % query
 end
 
 def dummy_search_result

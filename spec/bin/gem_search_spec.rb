@@ -11,6 +11,12 @@ Usage: gem-search gem_name [options]
                         [n]ame :         eg. gem-search webkit -s n
     -v, --version      Display the version.
     -h, --help         Display this help message.
+
+Available commands:
+
+  browse   Open rubygem's homepage in the system's default web browser
+
+See `<command> --help` for more information on a specific command.
 EOS
 
 RSpec.shared_examples 'display an usage' do

@@ -18,7 +18,7 @@ RSpec.describe Executor do
     end
 
     context 'when no matching gem' do
-      before { stub_request_no_result_with_page(query, 1) }
+      before { stub_request_search_no_result_with_page(query, 1) }
       let(:query) { 'no_match_gem_name' }
       it { expect { @executor.search(query) }.to raise_error(LibraryNotFound) }
     end
@@ -26,7 +26,7 @@ RSpec.describe Executor do
     describe 'sorting' do
       before do
         stub_request_search(query, 1, dummy_search_result)
-        stub_request_no_result_with_page(query, 2)
+        stub_request_search_no_result_with_page(query, 2)
       end
       let(:query) { 'factory_girl' }
 
@@ -92,7 +92,7 @@ RSpec.describe Executor do
         stub_request_search(query, 1, load_http_stubs('search/cucumber-_1.json'))
         stub_request_search(query, 2, load_http_stubs('search/cucumber-_2.json'))
         stub_request_search(query, 3, load_http_stubs('search/cucumber-_3.json'))
-        stub_request_no_result_with_page(query, 4)
+        stub_request_search_no_result_with_page(query, 4)
       end
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
@@ -172,7 +172,7 @@ RSpec.describe Executor do
       context 'NAME size is 42' do
         before do
           stub_request_search(query, 1, dummy_search_result_name_size_is_42)
-          stub_request_no_result_with_page(query, 2)
+          stub_request_search_no_result_with_page(query, 2)
         end
         let(:query) { 'size_is_42_2345678901234567890123456789012' }
         it 'is 50 characters' do
@@ -189,7 +189,7 @@ RSpec.describe Executor do
       context 'NAME size is 43' do
         before do
           stub_request_search(query, 1, dummy_search_result_name_size_is_43)
-          stub_request_no_result_with_page(query, 2)
+          stub_request_search_no_result_with_page(query, 2)
         end
         let(:query) { 'size_is_43_23456789012345678901234567890123' }
         it 'is 51 characters' do
@@ -201,6 +201,54 @@ RSpec.describe Executor do
           EOS
           expect { @executor.search(query) }.to output(res).to_stdout
         end
+      end
+    end
+  end
+
+  describe '#browse' do
+    before do
+      @executor = Executor.new
+    end
+
+    context 'when a network error occurred' do
+      before do
+        stub_request(:get, build_gems_uri(query))
+          .to_return(status: 500, body: '[]')
+      end
+      let(:query) { 'network_error_orccurred' }
+      it { expect { @executor.browse(query) }.to raise_error(Exception) }
+    end
+
+    context 'when no matching gem' do
+      before { stub_request_gems_no_result(query) }
+      let(:query) { 'no_match_gem_name' }
+      it { expect { @executor.browse(query) }.to raise_error(OpenURI::HTTPError) }
+    end
+
+    context 'when no homepage_uri' do
+      before do
+        url = Executor::GEM_URL % query
+        allow(@executor).to receive(:system).with('open', url)
+        stub_request_gems(query, load_http_stubs("gems/#{query}.json"))
+      end
+      let(:query) { 'git-trend_no_homepage' }
+
+      it 'open a rubygems url' do
+        @executor.browse(query)
+      end
+    end
+
+    context 'when homepage_uri is existed' do
+      before do
+        http_stub = load_http_stubs("gems/#{query}.json")
+        url = JSON.parse(http_stub)['homepage_uri']
+        allow(@executor).to receive(:system).with('open', url)
+        stub_request_gems(query, http_stub)
+      end
+      let(:query) { 'git-trend' }
+
+      it 'open a homepage url' do
+        @executor.browse(query)
       end
     end
   end

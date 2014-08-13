@@ -25,6 +25,25 @@ module Gem::Search
         '  [n]ame :         eg. gem-search webkit -s n',
       ]), argument: :optional
       on :v, :version, 'Display the version.'
+
+      command 'browse' do
+        description "Open rubygem's homepage in the system's default web browser"
+        run do |_opts, args|
+          gem = args.first
+          executor = Executor.new
+          begin
+            executor.browse(gem)
+          rescue OpenURI::HTTPError
+            puts 'No such gem.'
+            abort
+          rescue => e
+            puts e.message
+            puts e.stacktrace
+            abort
+          end
+          exit
+        end
+      end
     end
 
     def run

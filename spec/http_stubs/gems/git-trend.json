@@ -1,0 +1,66 @@
+{
+  "name": "git-trend",
+  "downloads": 1106,
+  "version": "0.0.8",
+  "version_downloads": 36,
+  "platform": "ruby",
+  "authors": "rochefort",
+  "info": "cli based; show Trending repository on github",
+  "licenses": [
+    "MIT"
+  ],
+  "project_uri": "http://rubygems.org/gems/git-trend",
+  "gem_uri": "http://rubygems.org/gems/git-trend-0.0.8.gem",
+  "homepage_uri": "https://github.com/rochefort/git-trend",
+  "wiki_uri": null,
+  "documentation_uri": null,
+  "mailing_list_uri": null,
+  "source_code_uri": null,
+  "bug_tracker_uri": null,
+  "dependencies": {
+    "development": [
+      {
+        "name": "bundler",
+        "requirements": "~> 1.6"
+      },
+      {
+        "name": "coveralls",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "rake",
+        "requirements": ">= 0"
+      },
+      {
+        "name": "rspec",
+        "requirements": "~> 3.0.0"
+      },
+      {
+        "name": "rspec-its",
+        "requirements": "~> 1.0.1"
+      },
+      {
+        "name": "simplecov",
+        "requirements": "~> 0.9.0"
+      },
+      {
+        "name": "webmock",
+        "requirements": "~> 1.18.0"
+      }
+    ],
+    "runtime": [
+      {
+        "name": "addressable",
+        "requirements": "~> 2.3.6"
+      },
+      {
+        "name": "mechanize",
+        "requirements": "~> 2.7.3"
+      },
+      {
+        "name": "thor",
+        "requirements": "~> 0.19.1"
+      }
+    ]
+  }
+}

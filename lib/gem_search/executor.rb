@@ -5,7 +5,10 @@ module Gem::Search
   class Executor
     include Gem::Search::Rendering
     BASE_URL   = 'https://rubygems.org'
-    SEARCH_URL = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
+    SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
+    GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
+    GEM_URL    = "#{BASE_URL}/%s"
+
     MAX_REQUEST_COUNT = 20
 
     def search(query, opt_sort = 'downloads')
@@ -14,8 +17,8 @@ module Gem::Search
       gems = []
       (1..MAX_REQUEST_COUNT).each do |n|
         print '.'
-        url = SEARCH_URL % [query, n]
-        gems_by_page = search_rubygems(url)
+        url = SEARCH_API % [query, n]
+        gems_by_page = open_rubygems_api(url)
         break if gems_by_page.size.zero?
         gems += gems_by_page
       end
@@ -26,9 +29,24 @@ module Gem::Search
       Executor.render(gems)
     end
 
+    def browse(gem)
+      return unless gem
+      api_url = GEM_API % gem
+      result = open_rubygems_api(api_url)
+      url = result['homepage_uri']
+      if url.nil? || url.empty?
+        url = GEM_URL % gem
+      end
+      browser_open(url)
+    end
+
     private
 
-    def search_rubygems(url)
+    def browser_open(url)
+      system('open', url)
+    end
+
+    def open_rubygems_api(url)
       option = {}
       proxy = URI.parse(url).find_proxy
       if proxy

@@ -8,8 +8,8 @@ RSpec.describe Command do
       @executor = Executor.new
       allow(Executor).to receive(:new).and_return(@executor)
       allow(ARGV).to receive(:[]).with(0).and_return(query)
-      stub_request_search(1, dummy_search_result)
-      stub_request_no_result_with_page(2)
+      stub_request_search(query, 1, dummy_search_result)
+      stub_request_search_no_result_with_page(query, 2)
     end
     let(:query) { 'factory_girl' }
 
