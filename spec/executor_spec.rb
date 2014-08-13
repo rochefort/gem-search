@@ -3,11 +3,11 @@ require 'spec_helper'
 include Gem::Search
 
 RSpec.describe Executor do
-  describe '#search' do
-    before do
-      @executor = Executor.new
-    end
+  before do
+    @executor = Executor.new
+  end
 
+  describe '#search' do
     context 'when a network error occurred' do
       before do
         stub_request(:get, build_search_uri(query, 1))
@@ -206,10 +206,6 @@ RSpec.describe Executor do
   end
 
   describe '#browse' do
-    before do
-      @executor = Executor.new
-    end
-
     context 'when a network error occurred' do
       before do
         stub_request(:get, build_gems_uri(query))
