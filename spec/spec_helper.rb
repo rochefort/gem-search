@@ -14,11 +14,11 @@ def load_http_stubs(file_name)
   open(File.join(File.dirname(__FILE__), 'http_stubs', file_name)).read
 end
 
-def stub_request_search(page, body)
+def stub_request_search(query, page, body)
   stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: body)
 end
 
-def stub_request_no_result_with_page(page)
+def stub_request_no_result_with_page(query, page)
   stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: '[]')
 end
 

@@ -18,15 +18,15 @@ RSpec.describe Executor do
     end
 
     context 'when no matching gem' do
-      before { stub_request_no_result_with_page(1) }
+      before { stub_request_no_result_with_page(query, 1) }
       let(:query) { 'no_match_gem_name' }
       it { expect { @executor.search(query) }.to raise_error(LibraryNotFound) }
     end
 
     describe 'sorting' do
       before do
-        stub_request_search(1, dummy_search_result)
-        stub_request_no_result_with_page(2)
+        stub_request_search(query, 1, dummy_search_result)
+        stub_request_no_result_with_page(query, 2)
       end
       let(:query) { 'factory_girl' }
 
@@ -89,10 +89,10 @@ RSpec.describe Executor do
 
     describe 'multiple page' do
       before do
-        stub_request_search(1, load_http_stubs('cucumber-_1.json'))
-        stub_request_search(2, load_http_stubs('cucumber-_2.json'))
-        stub_request_search(3, load_http_stubs('cucumber-_3.json'))
-        stub_request_no_result_with_page(4)
+        stub_request_search(query, 1, load_http_stubs('search/cucumber-_1.json'))
+        stub_request_search(query, 2, load_http_stubs('search/cucumber-_2.json'))
+        stub_request_search(query, 3, load_http_stubs('search/cucumber-_3.json'))
+        stub_request_no_result_with_page(query, 4)
       end
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
@@ -171,8 +171,8 @@ RSpec.describe Executor do
     describe 'ruled NAME line' do
       context 'NAME size is 42' do
         before do
-          stub_request_search(1, dummy_search_result_name_size_is_42)
-          stub_request_no_result_with_page(2)
+          stub_request_search(query, 1, dummy_search_result_name_size_is_42)
+          stub_request_no_result_with_page(query, 2)
         end
         let(:query) { 'size_is_42_2345678901234567890123456789012' }
         it 'is 50 characters' do
@@ -188,8 +188,8 @@ RSpec.describe Executor do
 
       context 'NAME size is 43' do
         before do
-          stub_request_search(1, dummy_search_result_name_size_is_43)
-          stub_request_no_result_with_page(2)
+          stub_request_search(query, 1, dummy_search_result_name_size_is_43)
+          stub_request_no_result_with_page(query, 2)
         end
         let(:query) { 'size_is_43_23456789012345678901234567890123' }
         it 'is 51 characters' do
