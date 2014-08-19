@@ -1,6 +1,6 @@
 ## v0.1.4
 
-* Fix cannnot open gem url when gem has no homepage url. [b476b28]
+* Fix cannot open gem url when gem has no homepage url. [b476b28]
 
 ## v0.1.3
 
