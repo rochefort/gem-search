@@ -20,9 +20,9 @@ module Gem::Search
       on :s, :sort, opt_description([
         'Sort by the item.',
         '  default [a]ll',
-        '  [a]ll  :DL(all)  eg. gem-search webkit -s a',
-        '  [v]er  :DL(ver)  eg. gem-search webkit -s v',
-        '  [n]ame :         eg. gem-search webkit -s n',
+        '  [a]ll  :DL(all)  e.g.: gem-search webkit -s a',
+        '  [v]er  :DL(ver)  e.g.: gem-search webkit -s v',
+        '  [n]ame :         e.g.: gem-search webkit -s n',
       ]), argument: :optional
       on :d, :detail, 'Display homepage url of gem'
       on :v, :version, 'Display the version.'
