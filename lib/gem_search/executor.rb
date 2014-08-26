@@ -37,6 +37,7 @@ module Gem::Search
       if url.nil? || url.empty?
         url = GEM_URL % gem
       end
+      puts "Opening #{url}"
       browser_open(url)
     end
 
