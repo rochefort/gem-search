@@ -6,9 +6,9 @@ Usage: gem-search gem_name [options]
 
     -s, --sort         Sort by the item.
                         default [a]ll
-                        [a]ll  :DL(all)  eg. gem-search webkit -s a
-                        [v]er  :DL(ver)  eg. gem-search webkit -s v
-                        [n]ame :         eg. gem-search webkit -s n
+                        [a]ll  :DL(all)  e.g.: gem-search webkit -s a
+                        [v]er  :DL(ver)  e.g.: gem-search webkit -s v
+                        [n]ame :         e.g.: gem-search webkit -s n
     -d, --detail       Display homepage url of gem
     -v, --version      Display the version.
     -h, --help         Display this help message.
