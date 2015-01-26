@@ -7,17 +7,21 @@ RSpec.describe Command do
     before do
       @executor = Executor.new
       allow(Executor).to receive(:new).and_return(@executor)
-      allow(ARGV).to receive(:[]).with(0).and_return(query)
+      @bef_args = ARGV
+      ARGV = [query]
       stub_request_search(query, 1, dummy_search_result)
       stub_request_search_no_result_with_page(query, 2)
     end
+    after do
+      ARGV = @bef_args
+    end
     let(:query) { 'factory_girl' }
 
-    context 'with no sort option' do
+    context 'without sort option' do
       before do
         allow(Command::OPTS).to receive(:[]).and_return(nil)
       end
-      it 'called with no sort option' do
+      it 'called without sort option' do
         expect(@executor).to receive(:search).with(query, default_opts).once
         Command.new.run
       end
