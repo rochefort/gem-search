@@ -3,7 +3,7 @@ require 'open-uri'
 
 module Gem::Search
   class Executor
-    include Gem::Search::Rendering
+    include Rendering
     BASE_URL   = 'https://rubygems.org'
     SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
     GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
