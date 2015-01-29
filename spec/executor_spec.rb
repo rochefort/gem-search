@@ -246,7 +246,7 @@ RSpec.describe Executor do
     context 'when no homepage_uri' do
       before do
         url = Executor::GEM_URL % query
-        allow(@executor).to receive(:system).with(anything(), url)
+        allow(@executor).to receive(:system).with(anything, url)
         stub_request_gems(query, load_http_stubs("gems/#{query}.json"))
       end
       let(:query) { 'git-trend_no_homepage' }
@@ -260,7 +260,7 @@ RSpec.describe Executor do
       before do
         http_stub = load_http_stubs("gems/#{query}.json")
         url = JSON.parse(http_stub)['homepage_uri']
-        allow(@executor).to receive(:system).with(anything(), url)
+        allow(@executor).to receive(:system).with(anything, url)
         stub_request_gems(query, http_stub)
       end
       let(:query) { 'git-trend' }
@@ -274,18 +274,20 @@ RSpec.describe Executor do
   private
 
   def dummy_search_result_name_size_is_42
-    [{"name"=>"size_is_42_2345678901234567890123456789012",
-      "downloads"=>1000,
-      "version"=>"0.0.1",
-      "version_downloads"=>100}
-    ].to_json
+    [{
+      'name' => 'size_is_42_2345678901234567890123456789012',
+      'downloads' => 1000,
+      'version' => '0.0.1',
+      'version_downloads' => 100
+    }].to_json
   end
 
   def dummy_search_result_name_size_is_43
-    [{"name"=>"size_is_43_23456789012345678901234567890123",
-      "downloads"=>2000,
-      "version"=>"0.0.2",
-      "version_downloads"=>200}
-    ].to_json
+    [{
+      'name' => 'size_is_43_23456789012345678901234567890123',
+      'downloads' => 2000,
+      'version' => '0.0.2',
+      'version_downloads' => 200
+    }].to_json
   end
 end
