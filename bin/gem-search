@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 require 'gem_search'
 
-Gem::Search::Command.new.run
+Gem::Search::CommandBuilder.new(ARGV).build.call

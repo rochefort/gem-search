@@ -30,8 +30,9 @@ Gem::Specification.new do |gem|
 
   gem.post_install_message = install_message
 
-  gem.add_dependency 'slop', '~>3.6.0'
+  gem.add_dependency 'slop', '~>4.0.0'
   gem.add_dependency 'json', '~>1.8.1'
+  gem.add_dependency 'mem'
 
   # gem.add_development_dependency 'pry',     '~>0.9.12.6'
   gem.add_development_dependency 'webmock', '~>1.18.0'

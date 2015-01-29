@@ -1,23 +1,19 @@
 require 'spec_helper'
 
 BIN = 'bin/gem-search'
+
 USAGE = <<-EOS
 Usage: gem-search gem_name [options]
 
-    -s, --sort         Sort by the item.
-                        default [a]ll
-                        [a]ll  :DL(all)  e.g.: gem-search webkit -s a
-                        [v]er  :DL(ver)  e.g.: gem-search webkit -s v
-                        [n]ame :         e.g.: gem-search webkit -s n
-    -d, --detail       Display homepage url of gem
-    -v, --version      Display the version.
-    -h, --help         Display this help message.
-
-Available commands:
-
-  browse   Open rubygem's homepage in the system's default web browser
-
-See `<command> --help` for more information on a specific command.
+    -s, --sort     Sort by the field.
+                     default [a]ll
+                     [a]ll  :DL(all)  e.g.: gem-search webkit -s a
+                     [v]er  :DL(ver)  e.g.: gem-search webkit -s v
+                     [n]ame :         e.g.: gem-search webkit -s n
+    -b, --browse   Open rubygem's homepage in the system's default web browser.
+    -d, --detail   Display rubygems's homepage url.
+    -v, --version  Display the version.
+    -h, --help     Display this help message.
 EOS
 
 RSpec.shared_examples 'display an usage' do
@@ -48,5 +44,4 @@ RSpec.describe 'bin/gem-search' do
       should == "gem-search #{Gem::Search::VERSION}\n"
     end
   end
-
 end
