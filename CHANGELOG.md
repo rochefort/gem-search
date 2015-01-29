@@ -1,3 +1,8 @@
+## v0.1.5
+
+* Update slop for v4.0.0 and refactor. [94db668]
+
+
 ## v0.1.4
 
 * Fix cannot open gem url when gem has no homepage url. [b476b28]

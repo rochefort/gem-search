@@ -118,7 +118,11 @@ node-webkit-bootstrap (1.0.0)                           226       226 https://gi
 ### Browse
 It open rubygem's homepage in the system's default web browser.
 
-	gem-search browse 'gem_name'
+  gem-search -b `keyword'
+  
+  or
+  
+  gem-search --browse `keyword'
 
 
 
