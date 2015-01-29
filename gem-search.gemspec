@@ -35,9 +35,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'mem',  '~>0.1.5'
 
   # gem.add_development_dependency 'pry',     '~>0.9.12.6'
-  gem.add_development_dependency 'webmock', '~>1.18.0'
+  gem.add_development_dependency 'webmock', '~>1.20.4'
   gem.add_development_dependency 'rake',    '~>10.3.1'
 
   gem.add_development_dependency 'rspec',       '~> 3.0.0'
-  gem.add_development_dependency 'simplecov',   '~> 0.9.0'
+  gem.add_development_dependency 'simplecov',   '~> 0.9.1'
 end
