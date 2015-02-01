@@ -1,4 +1,4 @@
-[![Build Status](http://img.shields.io/travis/rochefort/gem-search.svg?style=flat)](http://travis-ci.org/rochefort/gem-search)
+[![CircleCI](https://img.shields.io/circleci/project/rochefort/gem-search.svg?style=flat)](https://circleci.com/gh/rochefort/gem-search)
 [![Dependency Status](http://img.shields.io/gemnasium/rochefort/gem-search.svg?style=flat)](https://gemnasium.com/rochefort/gem-search)
 [![Code Climate](http://img.shields.io/codeclimate/github/rochefort/gem-search.svg?style=flat)](https://codeclimate.com/github/rochefort/gem-search)
 [![Gem Version](http://img.shields.io/gem/v/gem-search.svg?style=flat)](http://badge.fury.io/rb/gem-search)
@@ -8,6 +8,9 @@
 gem-search is a command line utitlity like rubygems('gem search').  
 You can see a download total gem and sort columns.
 
+## Requirements
+
+Ruby version >= 2.0.0.
 
 ## Installation
 

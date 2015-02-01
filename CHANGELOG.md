@@ -1,7 +1,7 @@
 ## v0.1.5
 
-* Update slop for v4.0.0 and refactor. [94db668]
-
+* Update slop for v4.0.0 and refactor. [94db668]  
+unsupported Ruby 1.9.0
 
 ## v0.1.4
 
