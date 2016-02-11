@@ -1,9 +1,7 @@
 include Gem::Search
 
 RSpec.describe Executor do
-  before do
-    @executor = Executor.new
-  end
+  let(:executor) { Executor.new }
 
   describe '#search' do
     context 'when a network error occurred' do
@@ -12,13 +10,13 @@ RSpec.describe Executor do
           .to_return(status: 500, body: '[]')
       end
       let(:query) { 'network_error_orccurred' }
-      it { expect { @executor.search(query) }.to raise_error(Exception) }
+      it { expect { executor.search(query) }.to raise_error(Exception) }
     end
 
     context 'when no matching gem' do
       before { stub_request_search_no_result_with_page(query, 1) }
       let(:query) { 'no_match_gem_name' }
-      it { expect { @executor.search(query, default_opts) }.to raise_error(LibraryNotFound) }
+      it { expect { executor.search(query, default_opts) }.to raise_error(LibraryNotFound) }
     end
 
     describe 'with detail' do
@@ -38,7 +36,7 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780 http://github.com/thoughtbot/factory_girl_rails             
             |factory_girl_generator (0.0.3)                         8015     15547 http://github.com/leshill/factory_girl_generator            
           EOS
-          expect { @executor.search(query, default_opts(detail: true)) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts(detail: true)) }.to output(res).to_stdout
         end
       end
     end
@@ -60,7 +58,7 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
@@ -74,7 +72,7 @@ RSpec.describe Executor do
             |factory_girl_rails (3.5.0)                            39724   1238780
             |factory_girl_generator (0.0.3)                         8015     15547
           EOS
-          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
@@ -88,7 +86,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl (3.6.0)                                    541   2042859
           EOS
-          expect { @executor.search(query, default_opts(sort: 'version_downloads')) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts(sort: 'version_downloads')) }.to output(res).to_stdout
         end
       end
 
@@ -102,7 +100,7 @@ RSpec.describe Executor do
             |factory_girl_generator (0.0.3)                         8015     15547
             |factory_girl_rails (3.5.0)                            39724   1238780
           EOS
-          expect { @executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
         end
       end
     end
@@ -184,7 +182,7 @@ RSpec.describe Executor do
           |tasty-cucumber-client (0.1.10)                         1504     11518
           |vagrant-cucumber-host (0.1.14)                          163       163
         EOS
-        expect { @executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
+        expect { executor.search(query, default_opts(sort: 'name')) }.to output(res).to_stdout
       end
     end
 
@@ -202,7 +200,7 @@ RSpec.describe Executor do
             |-------------------------------------------------- -------- ---------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
           EOS
-          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
 
@@ -219,7 +217,7 @@ RSpec.describe Executor do
             |--------------------------------------------------- -------- ---------
             |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
           EOS
-          expect { @executor.search(query, default_opts) }.to output(res).to_stdout
+          expect { executor.search(query, default_opts) }.to output(res).to_stdout
         end
       end
     end
@@ -232,25 +230,25 @@ RSpec.describe Executor do
           .to_return(status: 500, body: '[]')
       end
       let(:query) { 'network_error_orccurred' }
-      it { expect { @executor.browse(query) }.to raise_error(Exception) }
+      it { expect { executor.browse(query) }.to raise_error(Exception) }
     end
 
     context 'when no matching gem' do
       before { stub_request_gems_no_result(query) }
       let(:query) { 'no_match_gem_name' }
-      it { expect { @executor.browse(query) }.to raise_error(OpenURI::HTTPError) }
+      it { expect { executor.browse(query) }.to raise_error(OpenURI::HTTPError) }
     end
 
     context 'when no homepage_uri' do
       before do
         url = Executor::GEM_URL % query
-        allow(@executor).to receive(:system).with(anything, url)
+        allow(executor).to receive(:system).with(anything, url)
         stub_request_gems(query, load_http_stubs("gems/#{query}.json"))
       end
       let(:query) { 'git-trend_no_homepage' }
 
       it 'open a rubygems url' do
-        @executor.browse(query)
+        executor.browse(query)
       end
     end
 
@@ -258,13 +256,13 @@ RSpec.describe Executor do
       before do
         http_stub = load_http_stubs("gems/#{query}.json")
         url = JSON.parse(http_stub)['homepage_uri']
-        allow(@executor).to receive(:system).with(anything, url)
+        allow(executor).to receive(:system).with(anything, url)
         stub_request_gems(query, http_stub)
       end
       let(:query) { 'git-trend' }
 
       it 'open a homepage url' do
-        @executor.browse(query)
+        executor.browse(query)
       end
     end
   end

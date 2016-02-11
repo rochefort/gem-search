@@ -14,13 +14,13 @@ Usage: gem-search gem_name [options]
     -h, --help     Display this help message.
 EOS
 
-RSpec.shared_examples 'display an usage' do
-  it 'display an usage' do
-    should == USAGE
-  end
-end
-
 RSpec.describe 'bin/gem-search' do
+  shared_examples 'display an usage' do
+    it 'display an usage' do
+      should == USAGE
+    end
+  end
+
   context 'with no argument' do
     subject { `#{BIN}` }
     it_behaves_like 'display an usage'
