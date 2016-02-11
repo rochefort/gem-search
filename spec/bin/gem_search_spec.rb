@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 BIN = 'bin/gem-search'
 
 USAGE = <<-EOS

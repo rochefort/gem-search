@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 include Gem::Search
 
 RSpec.describe Commands::Run do
