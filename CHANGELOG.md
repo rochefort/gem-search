@@ -1,3 +1,8 @@
+## v0.1.6
+
+* Update gems [17ae8cd]  
+* Refactor tests  
+
 ## v0.1.5
 
 * Update slop for v4.0.0 and refactor. [94db668]  
