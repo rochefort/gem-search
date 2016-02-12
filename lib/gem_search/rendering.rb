@@ -7,8 +7,8 @@ module GemSearch
       base.extend(self)
     end
 
-    def render(gems, opt_detail)
-      @opt_detail = opt_detail
+    def render(gems, has_detail)
+      @has_detail = has_detail
       ruled_line_size(gems)
       render_header
       render_body(gems)
@@ -26,11 +26,11 @@ module GemSearch
       f = @ruled_line_size
       fmt = "%-#{f[0]}s %#{f[1]}s %#{f[2]}s"
       titles = ['NAME', 'DL(ver)', 'DL(all)']
-      hyphens = ['-'*f[0], '-'*f[1], '-'*f[2]]
-      if @opt_detail
+      hyphens = f[0, 3].map { |field| '-' * field }
+      if @has_detail
         fmt << " %-#{f[3]}s"
         titles << 'HOMEPAGE'
-        hyphens << '-'*f[3]
+        hyphens << '-' * f[3]
       end
       puts fmt % titles
       puts fmt % hyphens
@@ -39,14 +39,14 @@ module GemSearch
     def render_body(gems)
       f = @ruled_line_size
       fmt = "%-#{f[0]}s %#{f[1]}d %#{f[2]}d"
-      fmt << " %-#{f[3]}s" if @opt_detail
+      fmt << " %-#{f[3]}s" if @has_detail
       gems.each do |gem|
         columns = [
           "#{gem['name']} (#{gem['version']})",
           gem['version_downloads'],
           gem['downloads']
         ]
-        columns << gem['homepage_uri'] if @opt_detail
+        columns << gem['homepage_uri'] if @has_detail
         puts fmt % columns
       end
     end
