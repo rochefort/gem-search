@@ -19,12 +19,11 @@ module Gem::Search
       (1..MAX_REQUEST_COUNT).each do |n|
         print '.'
         url = SEARCH_API % [query, n]
-        gems_by_page = open_rubygems_api(url)
+        gems_by_page = request_ruby_gems_api(url)
         gems += gems_by_page
         break if gems_by_page.size < MAX_GEMS_PER_PAGE || gems_by_page.size.zero?
       end
       puts
-
       fail Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
       gems_sort!(gems, opts[:sort])
       Executor.render(gems, opts[:detail])
@@ -33,7 +32,7 @@ module Gem::Search
     def browse(gem)
       return unless gem
       api_url = GEM_API % gem
-      result = open_rubygems_api(api_url)
+      result = request_ruby_gems_api(api_url)
       url = result['homepage_uri']
       if url.nil? || url.empty?
         url = GEM_URL % gem
@@ -67,7 +66,7 @@ module Gem::Search
       nil
     end
 
-    def open_rubygems_api(url)
+    def request_ruby_gems_api(url)
       option = {}
       proxy = URI.parse(url).find_proxy
       if proxy
