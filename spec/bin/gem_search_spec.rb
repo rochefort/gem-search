@@ -39,7 +39,7 @@ RSpec.describe 'bin/gem-search' do
   context 'with -v' do
     subject { `#{BIN} -v` }
     it 'display an usage' do
-      should == "gem-search #{Gem::Search::VERSION}\n"
+      should == "gem-search #{GemSearch::VERSION}\n"
     end
   end
 end

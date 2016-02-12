@@ -1,7 +1,7 @@
 require 'json'
 require 'open-uri'
 
-module Gem::Search
+module GemSearch
   class Executor
     include Rendering
     BASE_URL   = 'https://rubygems.org'
@@ -24,7 +24,7 @@ module Gem::Search
         break if gems_by_page.size < MAX_GEMS_PER_PAGE || gems_by_page.size.zero?
       end
       puts
-      fail Gem::Search::LibraryNotFound, 'We did not find results.' if gems.size.zero?
+      fail GemSearch::LibraryNotFound, 'We did not find results.' if gems.size.zero?
       gems_sort!(gems, opts[:sort])
       Executor.render(gems, opts[:detail])
     end

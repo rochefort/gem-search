@@ -1,4 +1,4 @@
-module Gem::Search
+module GemSearch
   module Rendering
     # NAME', 'DL(ver)', 'DL(all)', 'HOMEPAGE'
     DEFAULT_RULED_LINE_SIZE = [50, 8, 9, 60]

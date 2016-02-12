@@ -1,4 +1,4 @@
-module Gem::Search
+module GemSearch
   module Commands
     require 'gem_search/commands/base.rb'
     require 'gem_search/commands/browse.rb'

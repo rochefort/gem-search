@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = 'gem-search'
   gem.require_paths = ['lib']
-  gem.version       = Gem::Search::VERSION
+  gem.version       = GemSearch::VERSION
 
   gem.post_install_message = install_message
 

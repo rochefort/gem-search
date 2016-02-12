@@ -1,4 +1,4 @@
-include Gem::Search
+include GemSearch
 
 RSpec.describe Commands::Run do
   describe '#call' do

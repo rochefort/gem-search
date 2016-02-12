@@ -1,4 +1,4 @@
-module Gem::Search
+module GemSearch
   require 'mem'
   require 'slop'
 

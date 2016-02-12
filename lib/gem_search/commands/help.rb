@@ -1,4 +1,4 @@
-module Gem::Search::Commands
+module GemSearch::Commands
   class Help < Base
     def call
       puts @options

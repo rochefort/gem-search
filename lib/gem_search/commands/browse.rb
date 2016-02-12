@@ -1,4 +1,4 @@
-module Gem::Search::Commands
+module GemSearch::Commands
   class Browse < Base
     def call
       executor = Executor.new

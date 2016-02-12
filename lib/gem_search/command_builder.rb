@@ -1,4 +1,4 @@
-module Gem::Search
+module GemSearch
   class CommandBuilder
     include Mem
 

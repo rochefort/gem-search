@@ -1,8 +1,8 @@
-module Gem::Search
+module GemSearch
   module Commands
     class Version < Base
       def call
-        puts "gem-search #{Gem::Search::VERSION}"
+        puts "gem-search #{GemSearch::VERSION}"
       end
     end
   end

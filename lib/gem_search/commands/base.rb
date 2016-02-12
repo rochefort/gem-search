@@ -1,4 +1,4 @@
-module Gem::Search::Commands
+module GemSearch::Commands
   class Base
     attr_reader :options
 

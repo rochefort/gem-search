@@ -1,4 +1,4 @@
-module Gem::Search::Commands
+module GemSearch::Commands
   class Run < Base
     ENABLE_SORT_OPTS = {
       'v' => 'version_downloads',
@@ -14,7 +14,7 @@ module Gem::Search::Commands
       executor = Executor.new
       gem = options.arguments[0]
       executor.search(gem, setup_opts)
-    rescue Gem::Search::LibraryNotFound => e
+    rescue GemSearch::LibraryNotFound => e
       puts e.message
       abort
     rescue => e
