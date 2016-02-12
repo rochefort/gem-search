@@ -1,9 +1,12 @@
 require 'json'
 require 'open-uri'
+require 'gem_search/rendering'
+require 'gem_search/utils/system_util'
 
 module GemSearch
   class Executor
     include Rendering
+    include Utils::SystemUtil
     BASE_URL   = 'https://rubygems.org'
     SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
     GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
@@ -15,14 +18,7 @@ module GemSearch
     def search(query, opts)
       return unless query
       print 'Searching '
-      gems = []
-      (1..MAX_REQUEST_COUNT).each do |n|
-        print '.'
-        url = SEARCH_API % [query, n]
-        gems_by_page = request_ruby_gems_api(url)
-        gems += gems_by_page
-        break if gems_by_page.size < MAX_GEMS_PER_PAGE || gems_by_page.size.zero?
-      end
+      gems = search_gems(query)
       puts
       fail GemSearch::LibraryNotFound, 'We did not find results.' if gems.size.zero?
       gems_sort!(gems, opts[:sort])
@@ -43,27 +39,20 @@ module GemSearch
 
     private
 
-    # https://github.com/github/hub/blob/9c589396ae38f7b9f98319065ad491149954c152/lib/hub/context.rb#L517
-    def browser_open(url)
-      cmd = osx? ? 'open' : %w[xdg-open cygstart x-www-browser firefox opera mozilla netscape].find { |comm| which comm }
-      system(cmd, url)
-    end
-
-    # refer to: https://github.com/github/hub/blob/9c589396ae38f7b9f98319065ad491149954c152/lib/hub/context.rb#L527
-    def osx?
-      require 'rbconfig'
-      RbConfig::CONFIG['host_os'].to_s.include?('darwin')
-    end
-
-    def which(cmd)
-      exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
-      ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
-        exts.each do |ext|
-          exe = "#{path}/#{cmd}#{ext}"
-          return exe if File.executable? exe
-        end
+    def search_gems(query)
+      gems = []
+      (1..MAX_REQUEST_COUNT).each do |n|
+        print '.'
+        url = SEARCH_API % [query, n]
+        results = request_ruby_gems_api(url)
+        gems += results
+        break if search_ended?(results.size)
       end
-      nil
+      gems
+    end
+
+    def search_ended?(size)
+      size < MAX_GEMS_PER_PAGE || size.zero?
     end
 
     def request_ruby_gems_api(url)
