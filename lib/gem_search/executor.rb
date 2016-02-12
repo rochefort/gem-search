@@ -10,6 +10,7 @@ module Gem::Search
     GEM_URL    = "#{BASE_URL}/gems/%s"
 
     MAX_REQUEST_COUNT = 20
+    MAX_GEMS_PER_PAGE = 30 # It has been determined by Github API
 
     def search(query, opts)
       return unless query
@@ -19,8 +20,8 @@ module Gem::Search
         print '.'
         url = SEARCH_API % [query, n]
         gems_by_page = open_rubygems_api(url)
-        break if gems_by_page.size.zero?
         gems += gems_by_page
+        break if gems_by_page.size < MAX_GEMS_PER_PAGE || gems_by_page.size.zero?
       end
       puts
 

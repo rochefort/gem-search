@@ -29,7 +29,7 @@ RSpec.describe Executor do
       context 'with no sort option' do
         it 'display rubygems ordering by DL(all)' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
             |-------------------------------------------------- -------- --------- ------------------------------------------------------------
             |factory_girl (3.6.0)                                    541   2042859 https://github.com/thoughtbot/factory_girl                  
@@ -51,7 +51,7 @@ RSpec.describe Executor do
       context 'with no sort option' do
         it 'display rubygems ordering by DL(all)' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
@@ -65,7 +65,7 @@ RSpec.describe Executor do
       context 'with sort option: [a]download' do
         it 'display rubygems ordering by DL(all)' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
@@ -79,7 +79,7 @@ RSpec.describe Executor do
       context 'with sort option: [v]version_downloads' do
         it 'display rubygems ordering by DL(ver)' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl_rails (3.5.0)                            39724   1238780
@@ -93,7 +93,7 @@ RSpec.describe Executor do
       context 'with sort option: [n]ame' do
         it 'display rubygems ordering by name' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
@@ -115,7 +115,7 @@ RSpec.describe Executor do
       let(:query) { 'cucumber-' }
       it 'display rubygems ordering by name' do
         res = <<-'EOS'.unindent
-          |Searching ....
+          |Searching ...
           |NAME                                                DL(ver)   DL(all)
           |-------------------------------------------------- -------- ---------
           |autotest-cucumber-notification (0.0.6)                 1027      3607
@@ -195,7 +195,7 @@ RSpec.describe Executor do
         let(:query) { 'size_is_42_2345678901234567890123456789012' }
         it 'is 50 characters' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000
@@ -212,7 +212,7 @@ RSpec.describe Executor do
         let(:query) { 'size_is_43_23456789012345678901234567890123' }
         it 'is 51 characters' do
           res = <<-'EOS'.unindent
-            |Searching ..
+            |Searching .
             |NAME                                                 DL(ver)   DL(all)
             |--------------------------------------------------- -------- ---------
             |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000
