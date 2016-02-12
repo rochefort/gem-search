@@ -11,7 +11,7 @@ def or_over_mac_os_lion?
 
   macos_full_version = `/usr/bin/sw_vers -productVersion`.chomp
   macos_version = macos_full_version[/10\.\d+/]
-  macos_version >= '10.7'  # 10.7 is lion
+  macos_version >= '10.7' # 10.7 is lion
 end
 
 Gem::Specification.new do |gem|
@@ -21,8 +21,8 @@ Gem::Specification.new do |gem|
   gem.summary       = 'search gems with using rubygems.org API'
   gem.description   = gem.summary
 
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gem.files         = `git ls-files -z`.split("\x0")
+  gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = 'gem-search'
   gem.require_paths = ['lib']
