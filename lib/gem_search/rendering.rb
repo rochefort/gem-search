@@ -10,8 +10,8 @@ module GemSearch
     def render(gems, opt_detail)
       @opt_detail = opt_detail
       ruled_line_size(gems)
-      render_to_header
-      render_to_body(gems)
+      render_header
+      render_body(gems)
     end
 
     private
@@ -22,7 +22,7 @@ module GemSearch
       @ruled_line_size[0] = max_name_size if max_name_size > @ruled_line_size[0]
     end
 
-    def render_to_header
+    def render_header
       f = @ruled_line_size
       fmt = "%-#{f[0]}s %#{f[1]}s %#{f[2]}s"
       titles = ['NAME', 'DL(ver)', 'DL(all)']
@@ -32,14 +32,12 @@ module GemSearch
         titles << 'HOMEPAGE'
         hyphens << '-'*f[3]
       end
-
       puts fmt % titles
       puts fmt % hyphens
     end
 
-    def render_to_body(gems)
+    def render_body(gems)
       f = @ruled_line_size
-
       fmt = "%-#{f[0]}s %#{f[1]}d %#{f[2]}d"
       fmt << " %-#{f[3]}s" if @opt_detail
       gems.each do |gem|
