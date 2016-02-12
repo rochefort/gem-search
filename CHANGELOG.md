@@ -1,3 +1,8 @@
+## v0.1.7
+
+* Remove reduncancy dots [17ae8cd]  
+The request was one extra.
+
 ## v0.1.6
 
 * Update gems [17ae8cd]  
