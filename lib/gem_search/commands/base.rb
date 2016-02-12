@@ -1,9 +1,11 @@
-module GemSearch::Commands
-  class Base
-    attr_reader :options
+module GemSearch
+  module Commands
+    class Base
+      attr_reader :options
 
-    def initialize(options)
-      @options = options
+      def initialize(options)
+        @options = options
+      end
     end
   end
 end
