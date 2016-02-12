@@ -46,8 +46,7 @@ module Gem::Search
 
     # https://github.com/github/hub/blob/9c589396ae38f7b9f98319065ad491149954c152/lib/hub/context.rb#L517
     def browser_open(url)
-      cmd = osx? ? 'open' :
-        %w[xdg-open cygstart x-www-browser firefox opera mozilla netscape].find { |comm| which comm }
+      cmd = osx? ? 'open' : %w[xdg-open cygstart x-www-browser firefox opera mozilla netscape].find { |comm| which comm }
       system(cmd, url)
     end
 
@@ -60,12 +59,12 @@ module Gem::Search
     def which(cmd)
       exts = ENV['PATHEXT'] ? ENV['PATHEXT'].split(';') : ['']
       ENV['PATH'].split(File::PATH_SEPARATOR).each do |path|
-        exts.each { |ext|
+        exts.each do |ext|
           exe = "#{path}/#{cmd}#{ext}"
           return exe if File.executable? exe
-        }
+        end
       end
-      return nil
+      nil
     end
 
     def open_rubygems_api(url)
