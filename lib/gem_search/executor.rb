@@ -1,14 +1,10 @@
 require 'json'
 require 'open-uri'
-require 'gem_search/utils/system_util'
 
 module GemSearch
   class Executor
-    include Utils::SystemUtil
-    BASE_URL   = 'https://rubygems.org'
     SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
     GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
-    GEM_URL    = "#{BASE_URL}/gems/%s"
 
     MAX_REQUEST_COUNT = 20
     MAX_GEMS_PER_PAGE = 30 # It has been determined by Github API
@@ -24,16 +20,9 @@ module GemSearch
       gems
     end
 
-    def browse(gem)
-      return unless gem
+    def search_for_browse(gem)
       api_url = GEM_API % gem
-      result = request_ruby_gems_api(api_url)
-      url = result['homepage_uri']
-      if url.nil? || url.empty?
-        url = GEM_URL % gem
-      end
-      puts "Opening #{url}"
-      browser_open(url)
+      request_ruby_gems_api(api_url)
     end
 
     private

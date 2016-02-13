@@ -13,6 +13,13 @@ module GemSearch
         puts args
         abort
       end
+
+      def unexpected_error(e)
+        puts "\nAn unexpected #{e.class} has occurred."
+        puts e.message
+        puts e.backtrace if ENV['DEBUG']
+        abort
+      end
     end
   end
 end

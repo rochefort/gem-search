@@ -18,10 +18,7 @@ module GemSearch
         gems_sort!(gems)
         render(gems, !options['no-homepage'])
       rescue => e
-        puts "\nAn unexpected #{e.class} has occurred."
-        puts e.message
-        puts e.backtrace if ENV['DEBUG']
-        abort
+        unexpected_error(e)
       end
 
       private
