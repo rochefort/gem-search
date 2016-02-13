@@ -1,3 +1,8 @@
+## v0.1.9
+
+- Show homepage url as default option [ddae051]  
+Add a `no-homepage` option not to show homepage url.  
+
 ## v0.1.8
 
 - Add variations of sort [9aed9e4]  

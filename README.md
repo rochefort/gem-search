@@ -34,18 +34,27 @@ e.g.:
 
 ```
 $ gem-search webkit
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-capybara-webkit (0.12.1)                              24863    185214
-jasmine-headless-webkit (0.8.4)                       19444     46147
-guard-jasmine-headless-webkit (0.3.2)                 11964     17872
-rspec-formatter-webkit (2.2.0)                          438      3549
-webkit-rspec-formatter (2.0.2)                          613      1573
-intentmedia-capybara-webkit (0.7.2.4)                   370      1362
-capybara-webkit-remote (0.0.4)                          209       838
-otherinbox-capybara-webkit (0.12.0.1)                   594       740
-gtk-webkit-ruby (0.0.3)                                 289       289
-```
+NAME                                                DL(ver)   DL(all) HOMEPAGE
+-------------------------------------------------- -------- --------- ------------------------------------------------------------
+capybara-webkit (1.8.0)                               15324   2568161 http://github.com/thoughtbot/capybara-webkit
+jasmine-headless-webkit (0.8.4)                      245135    323205
+guard-jasmine-headless-webkit (0.3.2)                 70738     89705
+rspec-formatter-webkit (2.6.0)                          355     23294 http://deveiate.org/webkit-rspec-formatter.html
+webkit-gtk (3.0.7)                                      452     15734 http://ruby-gnome2.sourceforge.jp/
+webkit-gtk2 (3.0.7)                                     487     12862 http://ruby-gnome2.sourceforge.jp/
+webkit_remote (0.5.5)                                   866     12030 http://github.com/pwnall/webkit_remote
+gtk-webkit-ruby (0.0.8)                                1644      8063 http://github.com/geoffyoungs/gtk-webkit-ruby
+capybara-webkit-remote (0.0.4)                         1944      6968 http://github.com/pettyjamesm/capybara-webkit-remote
+intentmedia-capybara-webkit (0.7.2.4)                  1796      6245 http://github.com/thoughtbot/capybara-webkit
+gtk_webkit_pdf (0.0.2.2)                               1349      5934 https://github.com/mohanraj-ramanujam/gtk_webkit_pdf
+webkit-rspec-formatter (2.0.2)                         2032      5099 http://deveiate.org/webkit-rspec-formatter.html
+otherinbox-capybara-webkit (0.12.0.1)                  2924      4161 http://github.com/thoughtbot/capybara-webkit
+jasmine-headless-webkit-firstbanco (0.9.0.rc.5)        2436      3995
+webkit_remote_unstable (0.1.3)                          823      3233 http://github.com/pwnall/webkit_remote_unstable
+webkit2-gtk (3.0.7)                                     421      2178 http://ruby-gnome2.sourceforge.jp/
+bitium-capybara-webkit (1.1.1)                         1208      1208 http://github.com/thoughtbot/capybara-webkit
+imseng-capybara-webkit (0.12.1)                        1199      1199 http://github.com/imseng/capybara-webkit
+node-webkit-bootstrap (1.0.0)                           873       873 https://github.com/audiosocket/node-webkit-bootstrap```
 
 ### Sorted by gem name
 
@@ -56,17 +65,17 @@ e.g.:
 
 ```
 $ gem-search webkit -s n
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-capybara-webkit (0.12.1)                              24863    185214
-capybara-webkit-remote (0.0.4)                          209       838
-gtk-webkit-ruby (0.0.3)                                 289       289
-guard-jasmine-headless-webkit (0.3.2)                 11964     17872
-intentmedia-capybara-webkit (0.7.2.4)                   370      1362
-jasmine-headless-webkit (0.8.4)                       19444     46147
-otherinbox-capybara-webkit (0.12.0.1)                   594       740
-rspec-formatter-webkit (2.2.0)                          438      3549
-webkit-rspec-formatter (2.0.2)                          613      1573
+NAME                                                DL(ver)   DL(all) HOMEPAGE
+-------------------------------------------------- -------- --------- ------------------------------------------------------------
+bitium-capybara-webkit (1.1.1)                         1208      1208 http://github.com/thoughtbot/capybara-webkit
+capybara-webkit (1.8.0)                               15324   2568161 http://github.com/thoughtbot/capybara-webkit
+capybara-webkit-remote (0.0.4)                         1944      6968 http://github.com/pettyjamesm/capybara-webkit-remote
+gtk-webkit-ruby (0.0.8)                                1644      8063 http://github.com/geoffyoungs/gtk-webkit-ruby
+gtk_webkit_pdf (0.0.2.2)                               1349      5934 https://github.com/mohanraj-ramanujam/gtk_webkit_pdf
+guard-jasmine-headless-webkit (0.3.2)                 70738     89705
+imseng-capybara-webkit (0.12.1)                        1199      1199 http://github.com/imseng/capybara-webkit
+intentmedia-capybara-webkit (0.7.2.4)                  1796      6245 http://github.com/thoughtbot/capybara-webkit
+...
 ```
 
 ### Sorted by DL(ver)
@@ -79,46 +88,36 @@ e.g.:
 
 ```
 $ gem-search webkit -s v
-NAME                                                DL(ver)   DL(all)
--------------------------------------------------- -------- ---------
-capybara-webkit (0.12.1)                              24863    185214
-jasmine-headless-webkit (0.8.4)                       19444     46147
-guard-jasmine-headless-webkit (0.3.2)                 11964     17872
-webkit-rspec-formatter (2.0.2)                          613      1573
-otherinbox-capybara-webkit (0.12.0.1)                   594       740
-rspec-formatter-webkit (2.2.0)                          438      3549
-intentmedia-capybara-webkit (0.7.2.4)                   370      1362
-gtk-webkit-ruby (0.0.3)                                 289       289
-capybara-webkit-remote (0.0.4)                          209       838
+NAME                                                DL(ver)   DL(all) HOMEPAGE
+-------------------------------------------------- -------- --------- ------------------------------------------------------------
+jasmine-headless-webkit (0.8.4)                      245135    323205
+guard-jasmine-headless-webkit (0.3.2)                 70738     89705
+capybara-webkit (1.8.0)                               15324   2568162 http://github.com/thoughtbot/capybara-webkit
+otherinbox-capybara-webkit (0.12.0.1)                  2924      4161 http://github.com/thoughtbot/capybara-webkit
+jasmine-headless-webkit-firstbanco (0.9.0.rc.5)        2436      3995
+webkit-rspec-formatter (2.0.2)                         2032      5099 http://deveiate.org/webkit-rspec-formatter.html
+capybara-webkit-remote (0.0.4)                         1944      6968 http://github.com/pettyjamesm/capybara-webkit-remote
+intentmedia-capybara-webkit (0.7.2.4)                  1796      6245 http://github.com/thoughtbot/capybara-webkit
+...
 ```
 
-### Display Homepage URL
-	gem-search `keyword' -d
-	gem-search `keyword' --detail
+### Do not show Homepage URL
+	gem-search `keyword' --no-homepage
 
 e.g.:
 ```
 $ gem-search webkit -d
-NAME                                                DL(ver)   DL(all) HOMEPAGE
--------------------------------------------------- -------- --------- ------------------------------------------------------------
-capybara-webkit (1.2.0)                               11691   1291179 http://github.com/thoughtbot/capybara-webkit
-jasmine-headless-webkit (0.8.4)                      213767    273893
-guard-jasmine-headless-webkit (0.3.2)                 66446     80976
-rspec-formatter-webkit (2.4.0)                         1532     14984 http://deveiate.org/webkit-rspec-formatter.html
-webkit_remote (0.5.5)                                   224      6111 http://github.com/pwnall/webkit_remote
-webkit-gtk (2.2.0)                                      297      5571 http://ruby-gnome2.sourceforge.jp/
-gtk-webkit-ruby (0.0.8)                                 716      4585 http://github.com/geoffyoungs/gtk-webkit-ruby
-capybara-webkit-remote (0.0.4)                         1206      4450 http://github.com/pettyjamesm/capybara-webkit-remote
-intentmedia-capybara-webkit (0.7.2.4)                  1155      4208 http://github.com/thoughtbot/capybara-webkit
-webkit-gtk2 (2.2.0)                                     282      3976 http://ruby-gnome2.sourceforge.jp/
-webkit-rspec-formatter (2.0.2)                         1417      3614 http://deveiate.org/webkit-rspec-formatter.html
-gtk_webkit_pdf (0.0.2.2)                                698      3314 https://github.com/mohanraj-ramanujam/gtk_webkit_pdf
-otherinbox-capybara-webkit (0.12.0.1)                  2343      3145 http://github.com/thoughtbot/capybara-webkit
-jasmine-headless-webkit-firstbanco (0.9.0.rc.4)         179      1591
-webkit_remote_unstable (0.1.3)                          222      1295 http://github.com/pwnall/webkit_remote_unstable
-imseng-capybara-webkit (0.12.1)                         549       549 http://github.com/imseng/capybara-webkit
-bitium-capybara-webkit (1.1.1)                          388       388 http://github.com/thoughtbot/capybara-webkit
-node-webkit-bootstrap (1.0.0)                           226       226 https://github.com/audiosocket/node-webkit-bootstrap
+NAME                                                DL(ver)   DL(all)
+-------------------------------------------------- -------- ---------
+capybara-webkit (1.8.0)                               15325   2568165
+jasmine-headless-webkit (0.8.4)                      245135    323210
+guard-jasmine-headless-webkit (0.3.2)                 70738     89707
+rspec-formatter-webkit (2.6.0)                          355     23294
+webkit-gtk (3.0.7)                                      452     15734
+webkit-gtk2 (3.0.7)                                     487     12862
+webkit_remote (0.5.5)                                   866     12030
+gtk-webkit-ruby (0.0.8)                                1644      8063
+...
 ```
 
 ### Browse
