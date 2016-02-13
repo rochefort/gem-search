@@ -2,9 +2,9 @@ module GemSearch
   module Commands
     class Run < Base
       ENABLE_SORT_OPTS = {
-        'v' => 'version_downloads',
         'a' => 'downloads',
         'n' => 'name',
+        'v' => 'version_downloads',
       }
 
       def call
@@ -28,8 +28,9 @@ module GemSearch
       private
 
       def setup_opts
+        sort = options['sort'] ? ENABLE_SORT_OPTS[options['sort'][0].downcase] : nil
         {
-          sort: ENABLE_SORT_OPTS[options['sort']] || 'downloads',
+          sort: sort || 'downloads',
           detail: options.detail?
         }
       end
