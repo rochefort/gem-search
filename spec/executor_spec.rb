@@ -19,7 +19,7 @@ RSpec.describe Executor do
       it { expect { executor.search(query, default_opts) }.to raise_error(LibraryNotFound) }
     end
 
-    describe 'with no-homepage' do
+    describe 'with no-homepage option' do
       before do
         stub_request_search(query, 1, dummy_search_result)
         stub_request_search_no_result_with_page(query, 2)
