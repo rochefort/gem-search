@@ -39,7 +39,7 @@ def stub_request_search_no_result_with_page(query, page)
 end
 
 def build_search_uri(query, page)
-  Executor::SEARCH_API % [query, page]
+  Request::SEARCH_API % [query, page]
 end
 
 # stubs for gems API
@@ -52,7 +52,7 @@ def stub_request_gems_no_result(query)
 end
 
 def build_gems_uri(query)
-  Executor::GEM_API % query
+  Request::GEM_API % query
 end
 
 def dummy_search_result

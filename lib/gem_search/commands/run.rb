@@ -13,7 +13,7 @@ module GemSearch
 
       def call
         puts_abort(options) unless valid?(options.arguments)
-        gems = Executor.new.search(options.arguments[0])
+        gems = Request.new.search(options.arguments[0])
         puts_abort('We did not find results.') if gems.size.zero?
         gems_sort!(gems)
         render(gems, !options['no-homepage'])

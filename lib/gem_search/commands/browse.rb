@@ -8,9 +8,8 @@ module GemSearch
       GEM_URL = "#{RUBYGEMS_URL}/gems/%s"
 
       def call
-        executor = Executor.new
         gem_name = options[:browse]
-        result = executor.search_for_browse(gem_name)
+        result = Request.new.search_for_browse(gem_name)
         url = extract_uri(result['homepage_uri'], gem_name)
         puts "Opening #{url}"
         browser_open(url)

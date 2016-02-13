@@ -2,7 +2,7 @@ require 'json'
 require 'open-uri'
 
 module GemSearch
-  class Executor
+  class Request
     SEARCH_API = "#{RUBYGEMS_URL}/api/v1/search.json?query=%s&page=%d"
     GEM_API    = "#{RUBYGEMS_URL}/api/v1/gems/%s.json"
 
