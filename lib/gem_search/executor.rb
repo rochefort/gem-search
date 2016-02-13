@@ -22,7 +22,7 @@ module GemSearch
       puts
       fail GemSearch::LibraryNotFound, 'We did not find results.' if gems.size.zero?
       gems_sort!(gems, opts[:sort])
-      Executor.render(gems, opts[:detail])
+      Executor.render(gems, opts[:has_homepage])
     end
 
     def browse(gem)

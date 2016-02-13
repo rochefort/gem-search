@@ -12,7 +12,7 @@ RSpec.describe Commands::Run do
   describe '#call' do
     before do
       allow(options).to receive(:arguments).and_return([query])
-      allow(options).to receive(:detail?).and_return(false)
+      allow(options).to receive(:[]).with('no-homepage')
       allow(options).to receive(:[]).with('sort')
       stub_request_search(query, 1, dummy_search_result)
       stub_request_search_no_result_with_page(query, 2)

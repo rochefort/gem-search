@@ -31,7 +31,7 @@ module GemSearch
         sort = options['sort'] ? ENABLE_SORT_OPTS[options['sort'][0].downcase] : nil
         {
           sort: sort || 'downloads',
-          detail: options.detail?
+          has_homepage: !options['no-homepage']
         }
       end
 

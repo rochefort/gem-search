@@ -133,7 +133,7 @@ def dummy_search_result
 end
 
 def default_opts(merge_opts = nil)
-  opts = { sort: 'downloads', detail: false }
+  opts = { sort: 'downloads', has_homepage: true }
   opts.merge!(merge_opts) if merge_opts
   opts
 end

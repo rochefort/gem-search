@@ -35,7 +35,7 @@ module GemSearch
         ])
         opts.string('-s', '--sort', sort_msg)
         opts.string('-b', '--browse', "Open rubygem's homepage in the system's default web browser.")
-        opts.on('-d', '--detail', "Display rubygems's homepage url.")
+        opts.on('--no-homepage', "Do not show rubygems's homepage url.")
         opts.on('-v', '--version', 'Display the version.')
         opts.on('-h', '--help', 'Display this help message.')
       end

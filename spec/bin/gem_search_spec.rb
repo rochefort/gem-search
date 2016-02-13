@@ -9,7 +9,7 @@ Usage: gem-search gem_name [options]
                      [v]er  :DL(ver)  e.g.: gem-search webkit -s v
                      [n]ame :         e.g.: gem-search webkit -s n
     -b, --browse   Open rubygem's homepage in the system's default web browser.
-    -d, --detail   Display rubygems's homepage url.
+    --no-homepage  Do not show rubygems's homepage url.
     -v, --version  Display the version.
     -h, --help     Display this help message.
 EOS
