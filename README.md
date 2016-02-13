@@ -94,9 +94,6 @@ capybara-webkit-remote (0.0.4)                          209       838
 
 ### Display Homepage URL
 	gem-search `keyword' -d
-	
-	or
-	
 	gem-search `keyword' --detail
 
 e.g.:
@@ -128,9 +125,6 @@ node-webkit-bootstrap (1.0.0)                           226       226 https://gi
 It open rubygem's homepage in the system's default web browser.
 
     gem-search -b `keyword'
-    
-    or
-    
     gem-search --browse `keyword'
 
 
