@@ -27,8 +27,8 @@ Use the gem-search as follows:
 ### Sorted by DL(all)
 
 	gem-search `keyword'
-	or
 	gem-search `keyword' -s a
+	gem-search `keyword' -s all
 
 e.g.:
 
@@ -48,12 +48,14 @@ gtk-webkit-ruby (0.0.3)                                 289       289
 ```
 
 ### Sorted by gem name
+
 	gem-search `keyword' -s n
+	gem-search `keyword' -s name
 
 e.g.:
 
 ```
-$ gem-search webkit
+$ gem-search webkit -s n
 NAME                                                DL(ver)   DL(all)
 -------------------------------------------------- -------- ---------
 capybara-webkit (0.12.1)                              24863    185214
@@ -68,7 +70,10 @@ webkit-rspec-formatter (2.0.2)                          613      1573
 ```
 
 ### Sorted by DL(ver)
+
 	gem-search `keyword' -s v
+	gem-search `keyword' -s ver
+	gem-search `keyword' -s version
 
 e.g.:
 
