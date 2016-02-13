@@ -2,7 +2,7 @@ module GemSearch
   require 'mem'
   require 'slop'
 
-  BASE_URL = 'https://rubygems.org'
+  RUBYGEMS_URL = 'https://rubygems.org'
 
   require 'gem_search/command_builder'
   require 'gem_search/commands'

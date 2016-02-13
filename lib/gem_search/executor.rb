@@ -3,8 +3,8 @@ require 'open-uri'
 
 module GemSearch
   class Executor
-    SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
-    GEM_API    = "#{BASE_URL}/api/v1/gems/%s.json"
+    SEARCH_API = "#{RUBYGEMS_URL}/api/v1/search.json?query=%s&page=%d"
+    GEM_API    = "#{RUBYGEMS_URL}/api/v1/gems/%s.json"
 
     MAX_REQUEST_COUNT = 20
     MAX_GEMS_PER_PAGE = 30 # It has been determined by Github API

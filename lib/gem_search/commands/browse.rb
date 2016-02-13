@@ -5,7 +5,7 @@ module GemSearch
     class Browse < Base
       include Utils::SystemUtil
 
-      GEM_URL = "#{BASE_URL}/gems/%s"
+      GEM_URL = "#{RUBYGEMS_URL}/gems/%s"
 
       def call
         executor = Executor.new
