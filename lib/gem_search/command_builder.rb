@@ -31,7 +31,7 @@ module GemSearch
           'default [a]ll',
           '[a]ll  :DL(all)  e.g.: gem-search webkit -s a',
           '[v]er  :DL(ver)  e.g.: gem-search webkit -s v',
-          '[n]ame :         e.g.: gem-search webkit -s n',
+          '[n]ame :         e.g.: gem-search webkit -s n'
         ])
         opts.string('-s', '--sort', sort_msg)
         opts.string('-b', '--browse', "Open rubygem's homepage in the system's default web browser.")

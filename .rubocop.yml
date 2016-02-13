@@ -1,0 +1,17 @@
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FileName:
+  Exclude: ['bin/gem-search']
+
+Style/FormatString:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false

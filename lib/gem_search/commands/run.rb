@@ -8,7 +8,7 @@ module GemSearch
       ENABLE_SORT_OPTS = {
         'a' => 'downloads',
         'n' => 'name',
-        'v' => 'version_downloads',
+        'v' => 'version_downloads'
       }
 
       def call
