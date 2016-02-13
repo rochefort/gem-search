@@ -7,7 +7,7 @@ module GemSearch
     GEM_API    = "#{RUBYGEMS_URL}/api/v1/gems/%s.json"
 
     MAX_REQUEST_COUNT = 20
-    MAX_GEMS_PER_PAGE = 30 # It has been determined by Github API
+    MAX_GEMS_PER_PAGE = 30 # It has been determined by Rubygems API
 
     def initialize(echo: true)
       @echo = echo
