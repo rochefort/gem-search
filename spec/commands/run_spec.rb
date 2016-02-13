@@ -3,7 +3,7 @@ include GemSearch
 RSpec.describe Commands::Run do
   shared_examples 'sort example' do |expected_option, actual_option|
     before { allow(options).to receive(:[]).with('sort').and_return(actual_option) }
-    it 'called Executor#search with sort option' do
+    fit "called Executor#search with '#{expected_option}'" do
       expect_any_instance_of(Executor).to receive(:search).with(query, default_opts(sort: expected_option)).once
       Commands::Run.new(options).call
     end
@@ -25,7 +25,7 @@ RSpec.describe Commands::Run do
         context 'without sort option' do
           include_examples 'sort example', 'downloads', nil
         end
-        context 'with disalbe sort option' do
+        context 'with disallowed sort option' do
           include_examples 'sort example', 'downloads', 'xyz'
         end
         context 'with a' do
@@ -38,32 +38,32 @@ RSpec.describe Commands::Run do
           include_examples 'sort example', 'downloads', 'ALL'
         end
       end
-    end
 
-    describe 'sort by name' do
-      context 'with n' do
-        include_examples 'sort example', 'name', 'n'
+      describe 'sort by name' do
+        context 'with n' do
+          include_examples 'sort example', 'name', 'n'
+        end
+        context 'with name' do
+          include_examples 'sort example', 'name', 'name'
+        end
+        context 'with NAME' do
+          include_examples 'sort example', 'name', 'NAME'
+        end
       end
-      context 'with name' do
-        include_examples 'sort example', 'name', 'name'
-      end
-      context 'with NAME' do
-        include_examples 'sort example', 'name', 'NAME'
-      end
-    end
 
-    describe 'sort by ver' do
-      context 'with v' do
-        include_examples 'sort example', 'version_downloads', 'v'
-      end
-      context 'with ver' do
-        include_examples 'sort example', 'version_downloads', 'ver'
-      end
-      context 'with version' do
-        include_examples 'sort example', 'version_downloads', 'version'
-      end
-      context 'with VER' do
-        include_examples 'sort example', 'version_downloads', 'VER'
+      describe 'sort by ver' do
+        context 'with v' do
+          include_examples 'sort example', 'version_downloads', 'v'
+        end
+        context 'with ver' do
+          include_examples 'sort example', 'version_downloads', 'ver'
+        end
+        context 'with version' do
+          include_examples 'sort example', 'version_downloads', 'version'
+        end
+        context 'with VER' do
+          include_examples 'sort example', 'version_downloads', 'VER'
+        end
       end
     end
   end
