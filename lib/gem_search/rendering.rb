@@ -3,10 +3,6 @@ module GemSearch
     # NAME', 'DL(ver)', 'DL(all)', 'HOMEPAGE'
     DEFAULT_RULED_LINE_SIZE = [50, 8, 9, 60]
 
-    def self.included(base)
-      base.extend(self)
-    end
-
     def render(gems, has_homepage)
       @has_homepage = has_homepage
       ruled_line_size(gems)

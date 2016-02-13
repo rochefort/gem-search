@@ -1,6 +1,10 @@
+require 'gem_search/rendering'
 module GemSearch
   module Commands
     class Run < Base
+      include Mem
+      include Rendering
+
       ENABLE_SORT_OPTS = {
         'a' => 'downloads',
         'n' => 'name',
@@ -8,18 +12,13 @@ module GemSearch
       }
 
       def call
-        unless valid?(options.arguments)
-          puts options
-          abort
-        end
-        executor = Executor.new
-        gem = options.arguments[0]
-        executor.search(gem, setup_opts)
-      rescue GemSearch::LibraryNotFound => e
-        puts e.message
-        abort
+        puts_abort(options) unless valid?(options.arguments)
+        gems = Executor.new.search(options.arguments[0])
+        puts_abort('We did not find results.') if gems.size.zero?
+        gems_sort!(gems)
+        render(gems, !options['no-homepage'])
       rescue => e
-        puts "An unexpected #{e.class} has occurred."
+        puts "\nAn unexpected #{e.class} has occurred."
         puts e.message
         puts e.backtrace if ENV['DEBUG']
         abort
@@ -27,17 +26,24 @@ module GemSearch
 
       private
 
-      def setup_opts
-        sort = options['sort'] ? ENABLE_SORT_OPTS[options['sort'][0].downcase] : nil
-        {
-          sort: sort || 'downloads',
-          has_homepage: !options['no-homepage']
-        }
-      end
-
       def valid?(arguments)
         arguments.size > 0 && arguments.none? { |arg| arg.match(/\A-/) }
       end
+
+      def gems_sort!(gems)
+        if sort_opt == 'name'
+          gems.sort! { |x, y| x[sort_opt] <=> y[sort_opt] }
+        else
+          gems.sort! { |x, y| y[sort_opt] <=> x[sort_opt] }
+        end
+      end
+
+      def sort_opt
+        sort_opt = options['sort'] ? ENABLE_SORT_OPTS[options['sort'][0].downcase] : nil
+        sort_opt = 'downloads' unless sort_opt
+        sort_opt
+      end
+      memoize :sort_opt
     end
   end
 end

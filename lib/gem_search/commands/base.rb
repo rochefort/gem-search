@@ -6,6 +6,13 @@ module GemSearch
       def initialize(options)
         @options = options
       end
+
+      private
+
+      def puts_abort(args)
+        puts args
+        abort
+      end
     end
   end
 end

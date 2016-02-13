@@ -1,11 +1,9 @@
 require 'json'
 require 'open-uri'
-require 'gem_search/rendering'
 require 'gem_search/utils/system_util'
 
 module GemSearch
   class Executor
-    include Rendering
     include Utils::SystemUtil
     BASE_URL   = 'https://rubygems.org'
     SEARCH_API = "#{BASE_URL}/api/v1/search.json?query=%s&page=%d"
@@ -15,14 +13,15 @@ module GemSearch
     MAX_REQUEST_COUNT = 20
     MAX_GEMS_PER_PAGE = 30 # It has been determined by Github API
 
-    def search(query, opts)
-      return unless query
-      print 'Searching '
+    def initialize(echo: true)
+      @echo = echo
+    end
+
+    def search(query)
+      print 'Searching ' if @echo
       gems = search_gems(query)
-      puts
-      fail GemSearch::LibraryNotFound, 'We did not find results.' if gems.size.zero?
-      gems_sort!(gems, opts[:sort])
-      Executor.render(gems, opts[:has_homepage])
+      puts if @echo
+      gems
     end
 
     def browse(gem)
@@ -42,7 +41,7 @@ module GemSearch
     def search_gems(query)
       gems = []
       (1..MAX_REQUEST_COUNT).each do |n|
-        print '.'
+        print '.' if @echo
         url = SEARCH_API % [query, n]
         results = request_ruby_gems_api(url)
         gems += results
@@ -66,14 +65,6 @@ module GemSearch
         end
       end
       JSON.parse(open(url, option).read)
-    end
-
-    def gems_sort!(gems, opt_sort)
-      if opt_sort == 'name'
-        gems.sort! { |x, y| x[opt_sort] <=> y[opt_sort] }
-      else
-        gems.sort! { |x, y| y[opt_sort] <=> x[opt_sort] }
-      end
     end
   end
 end
