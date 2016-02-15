@@ -5,9 +5,8 @@
 
 # gem-search
 
-Now gem-search is not published as a rubygem.  
-gem-search is a command line utitlity like rubygems('gem search').  
-You can see a download total gem and sort columns.
+`gem-search` is a command line utility like 'gem search'.  
+You can see downloads total and sort columns.  
 
 ## Requirements
 
