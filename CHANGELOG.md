@@ -1,3 +1,8 @@
+## v0.2.0
+
+- Add a Interrupt handling [a93beb1]  
+When it detect Interrupt(Ctrl-C), it display results of searching part way through.
+
 ## v0.1.9
 
 - Show homepage url as default option [ddae051]  
@@ -11,7 +16,7 @@ variations: a/all/, n/name, v/ver/version
 
 ## v0.1.7
 
-- Remove reduncancy dots [17ae8cd]  
+- Remove redundancy dots [54c34af]  
 The request was one extra.
 
 ## v0.1.6
@@ -30,7 +35,7 @@ unsupported Ruby 1.9.0
 
 ## v0.1.3
 
-- Implement a feature that is shown a homepage url when detail ooption is selected [f89d9c2]
+- Implement a feature that is shown a homepage url when detail option is selected [f89d9c2]
 
 ## v0.1.2
 
