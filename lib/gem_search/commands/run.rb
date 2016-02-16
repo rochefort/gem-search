@@ -13,7 +13,7 @@ module GemSearch
 
       def call
         puts_abort(options) unless valid?(options.arguments)
-        gems = Request.new.search(options.arguments[0])
+        gems = search_gems
         puts_abort('We did not find results.') if gems.size.zero?
         gems_sort!(gems)
         render(gems, !options['no-homepage'])
@@ -25,6 +25,15 @@ module GemSearch
 
       def valid?(arguments)
         arguments.size > 0 && arguments.none? { |arg| arg.match(/\A-/) }
+      end
+
+      def search_gems
+        print 'Searching '
+        gems = Request.new.search(options.arguments[0]) do
+          print '.'
+        end
+        puts
+        gems
       end
 
       def gems_sort!(gems)

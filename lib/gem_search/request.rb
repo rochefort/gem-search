@@ -9,14 +9,15 @@ module GemSearch
     MAX_REQUEST_COUNT = 20
     MAX_GEMS_PER_PAGE = 30 # It has been determined by Rubygems API
 
-    def initialize(echo: true)
-      @echo = echo
-    end
-
-    def search(query)
-      print 'Searching ' if @echo
-      gems = search_gems(query)
-      puts if @echo
+    def search(query, &post_hook)
+      gems = []
+      (1..MAX_REQUEST_COUNT).each do |n|
+        post_hook.call if post_hook
+        url = SEARCH_API % [query, n]
+        results = request_ruby_gems_api(url)
+        gems += results
+        break if search_ended?(results.size)
+      end
       gems
     end
 
@@ -26,18 +27,6 @@ module GemSearch
     end
 
     private
-
-    def search_gems(query)
-      gems = []
-      (1..MAX_REQUEST_COUNT).each do |n|
-        print '.' if @echo
-        url = SEARCH_API % [query, n]
-        results = request_ruby_gems_api(url)
-        gems += results
-        break if search_ended?(results.size)
-      end
-      gems
-    end
 
     def search_ended?(size)
       size < MAX_GEMS_PER_PAGE || size.zero?
