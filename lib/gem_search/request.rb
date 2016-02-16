@@ -19,6 +19,8 @@ module GemSearch
         break if search_ended?(results.size)
       end
       gems
+    rescue Interrupt
+      gems
     end
 
     def search_for_browse(gem)
