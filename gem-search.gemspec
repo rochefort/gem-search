@@ -30,11 +30,11 @@ Gem::Specification.new do |gem|
 
   gem.post_install_message = install_message
 
-  gem.add_dependency 'slop', '~>4.2.1'
+  gem.add_dependency 'slop', '~>4.3.0'
   gem.add_dependency 'mem',  '~>0.1.5'
 
-  gem.add_development_dependency 'webmock',     '~>1.22.6'
-  gem.add_development_dependency 'rake',        '~>10.3.1'
+  gem.add_development_dependency 'webmock',     '~>1.24.2'
+  gem.add_development_dependency 'rake',        '~>11.1.2'
   gem.add_development_dependency 'rspec',       '~>3.4.0'
   gem.add_development_dependency 'simplecov',   '~>0.11.2'
 end
