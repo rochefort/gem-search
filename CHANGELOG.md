@@ -1,3 +1,9 @@
+## v0.2.1
+- Update gems [88da69c]
+
+## v0.2.0
+- Update gems [d6b6c89]
+
 ## v0.2.0
 
 - Add a Interrupt handling [a93beb1]  
