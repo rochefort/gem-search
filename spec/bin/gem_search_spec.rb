@@ -1,4 +1,4 @@
-BIN = 'bin/gem-search'
+BIN = "bin/gem-search"
 
 USAGE = <<-EOS
 Usage: gem-search gem_name [options]
@@ -14,31 +14,31 @@ Usage: gem-search gem_name [options]
     -h, --help     Display this help message.
 EOS
 
-RSpec.describe 'bin/gem-search' do
-  shared_examples 'display an usage' do
-    it 'display an usage' do
+RSpec.describe "bin/gem-search" do
+  shared_examples "display an usage" do
+    it "display an usage" do
       should == USAGE
     end
   end
 
-  context 'with no argument' do
+  context "with no argument" do
     subject { `#{BIN}` }
-    it_behaves_like 'display an usage'
+    it_behaves_like "display an usage"
   end
 
-  context 'with -h' do
+  context "with -h" do
     subject { `#{BIN} -h` }
-    it_behaves_like 'display an usage'
+    it_behaves_like "display an usage"
   end
 
-  context 'with -x(non-exisitng option)' do
+  context "with -x(non-exisitng option)" do
     subject { `#{BIN} -x` }
-    it_behaves_like 'display an usage'
+    it_behaves_like "display an usage"
   end
 
-  context 'with -v' do
+  context "with -v" do
     subject { `#{BIN} -v` }
-    it 'display an usage' do
+    it "display an usage" do
       should == "gem-search #{GemSearch::VERSION}\n"
     end
   end

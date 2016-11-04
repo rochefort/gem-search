@@ -1,5 +1,5 @@
-require 'json'
-require 'open-uri'
+require "json"
+require "open-uri"
 
 module GemSearch
   class Request
@@ -30,21 +30,21 @@ module GemSearch
 
     private
 
-    def search_ended?(size)
-      size < MAX_GEMS_PER_PAGE || size.zero?
-    end
-
-    def request_ruby_gems_api(url)
-      option = {}
-      proxy = URI.parse(url).find_proxy
-      if proxy
-        if proxy.user && proxy.password
-          option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
-        else
-          option[:proxy] = proxy
-        end
+      def search_ended?(size)
+        size < MAX_GEMS_PER_PAGE || size.zero?
       end
-      JSON.parse(open(url, option).read)
-    end
+
+      def request_ruby_gems_api(url)
+        option = {}
+        proxy = URI.parse(url).find_proxy
+        if proxy
+          if proxy.user && proxy.password
+            option[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
+          else
+            option[:proxy] = proxy
+          end
+        end
+        JSON.parse(open(url, option).read)
+      end
   end
 end

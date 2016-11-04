@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
-require 'rubygems'
-require 'simplecov'
+require "rubygems"
+require "simplecov"
 SimpleCov.start
 
-require 'webmock/rspec'
+require "webmock/rspec"
 # require 'pry'
-require 'gem_search'
+require "gem_search"
 
-require 'helpers'
+require "helpers"
 
 RSpec.configure do |config|
   config.include Helpers
@@ -24,13 +24,13 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.expose_dsl_globally = false
 
-  config.example_status_persistence_file_path = 'spec/examples.txt'
+  config.example_status_persistence_file_path = "spec/examples.txt"
   config.order = :random
   Kernel.srand config.seed
 end
 
 def load_http_stubs(file_name)
-  open(File.join(File.dirname(__FILE__), 'http_stubs', file_name)).read
+  open(File.join(File.dirname(__FILE__), "http_stubs", file_name)).read
 end
 
 # stubs for search API
@@ -39,7 +39,7 @@ def stub_request_search(query, page, body)
 end
 
 def stub_request_search_no_result_with_page(query, page)
-  stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: '[]')
+  stub_request(:get, build_search_uri(query, page)).to_return(status: 200, body: "[]")
 end
 
 def build_search_uri(query, page)
@@ -52,7 +52,7 @@ def stub_request_gems(query, body)
 end
 
 def stub_request_gems_no_result(query)
-  stub_request(:get, build_gems_uri(query)).to_return(status: 404, body: '[]')
+  stub_request(:get, build_gems_uri(query)).to_return(status: 404, body: "[]")
 end
 
 def build_gems_uri(query)
@@ -61,6 +61,6 @@ end
 
 class String
   def unindent
-    gsub(/^\s+\|/, '')
+    gsub(/^\s+\|/, "")
   end
 end

@@ -1,4 +1,4 @@
-require 'gem_search/utils/system_util'
+require "gem_search/utils/system_util"
 
 module GemSearch
   module Commands
@@ -10,24 +10,24 @@ module GemSearch
       def call
         gem_name = options[:browse]
         result = Request.new.search_for_browse(gem_name)
-        url = extract_uri(result['homepage_uri'], gem_name)
+        url = extract_uri(result["homepage_uri"], gem_name)
         puts "Opening #{url}"
         browser_open(url)
       rescue OpenURI::HTTPError
-        puts_abort('No such a gem.')
+        puts_abort("No such a gem.")
       rescue => e
         unexpected_error(e)
       end
 
       private
 
-      def extract_uri(homepage_uri, gem_name)
-        if homepage_uri.nil? || homepage_uri.empty?
-          GEM_URL % gem_name
-        else
-          homepage_uri
+        def extract_uri(homepage_uri, gem_name)
+          if homepage_uri.nil? || homepage_uri.empty?
+            GEM_URL % gem_name
+          else
+            homepage_uri
+          end
         end
-      end
     end
   end
 end

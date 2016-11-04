@@ -1,4 +1,4 @@
-require 'helpers/dummy_data'
+require "helpers/dummy_data"
 
 module Helpers
   def self.included(_base)
