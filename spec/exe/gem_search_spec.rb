@@ -3,6 +3,7 @@ BIN = "exe/gem-search"
 USAGE = <<-EOS
 Usage: gem-search gem_name [options]
 
+    -e, --exact    Use the exact match
     -s, --sort     Sort by the field.
                      default [a]ll
                      [a]ll  :DL(all)  e.g.: gem-search webkit -s a

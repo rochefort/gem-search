@@ -36,6 +36,7 @@ module GemSearch
             "[v]er  :DL(ver)  e.g.: gem-search webkit -s v",
             "[n]ame :         e.g.: gem-search webkit -s n"
           ])
+          opts.bool("-e", "--exact", "Use the exact match")
           opts.string("-s", "--sort", sort_msg)
           opts.string("-b", "--browse", "Open rubygem's homepage in the system's default web browser.")
           opts.on("--no-homepage", "Do not show rubygems's homepage url.")

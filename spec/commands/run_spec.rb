@@ -25,6 +25,7 @@ RSpec.describe Commands::Run do
   describe "#call" do
     before do
       allow(options).to receive(:arguments).and_return([query])
+      allow(options).to receive(:[]).with("exact").and_return(false)
       allow(options).to receive(:[]).with("no-homepage")
       allow(options).to receive(:[]).with("sort")
     end
@@ -137,6 +138,45 @@ RSpec.describe Commands::Run do
       let(:query) { "cucumber-" }
       it "display rubygems ordering by name" do
         expect { Commands::Run.new(options).call }.to output(dummy_search_results_multiple_pages).to_stdout
+      end
+    end
+
+    describe "exact matching" do
+      before do
+        allow(options).to receive(:[]).with("exact").and_return(true)
+        stub_request_search(query, 1, dummy_search_result)
+        stub_request_search_no_result_with_page(query, 2)
+      end
+
+      context "results is only 1page" do
+        let(:query) { "factory_girl" }
+        it "display the specified rubygem" do
+          res = <<-'EOS'.unindent
+            |Searching .
+            |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
+            |-------------------------------------------------- -------- --------- ------------------------------------------------------------
+            |factory_girl (3.6.0)                                    541   2042859 https://github.com/thoughtbot/factory_girl                  
+          EOS
+          expect { Commands::Run.new(options).call }.to output(res).to_stdout
+        end
+      end
+
+      describe "multiple page" do
+        before do
+          stub_request_search(query, 1, load_http_stubs("search/kaminari_1.json"))
+          stub_request_search(query, 2, load_http_stubs("search/kaminari_2.json"))
+          stub_request_search_no_result_with_page(query, 3)
+        end
+        let(:query) { "kaminari" }
+        it "display the specified rubygem" do
+          res = <<-'EOS'.unindent
+            |Searching ..
+            |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
+            |-------------------------------------------------- -------- --------- ------------------------------------------------------------
+            |kaminari (1.0.1)                                     398699  17925148 https://github.com/kaminari/kaminari                        
+          EOS
+          expect { Commands::Run.new(options).call }.to output(res).to_stdout
+        end
       end
     end
 
