@@ -29,9 +29,7 @@ module GemSearch
 
         def search_gems
           print "Searching "
-          gems = Request.new.search(options.arguments[0]) do
-            print "."
-          end
+          gems = Request.new.search(options.arguments[0]) { print "." }
           puts
           gems
         end
