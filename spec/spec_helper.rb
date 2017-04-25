@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 require "rubygems"
 require "simplecov"
-SimpleCov.start
+SimpleCov.start if ENV["COVERAGE"]
 
 require "webmock/rspec"
 # require 'pry'
