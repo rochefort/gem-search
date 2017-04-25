@@ -1,4 +1,4 @@
-BIN = "bin/gem-search"
+BIN = "exe/gem-search"
 
 USAGE = <<-EOS
 Usage: gem-search gem_name [options]
@@ -14,7 +14,7 @@ Usage: gem-search gem_name [options]
     -h, --help     Display this help message.
 EOS
 
-RSpec.describe "bin/gem-search" do
+RSpec.describe "exe/gem-search" do
   shared_examples "display an usage" do
     it "display an usage" do
       should == USAGE
