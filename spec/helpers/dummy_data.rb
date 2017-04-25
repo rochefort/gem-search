@@ -1,5 +1,5 @@
 # rubocop:disable all
-module Dummy_data
+module DummyData
   private
 
   def dummy_search_result_sorted_by_all
