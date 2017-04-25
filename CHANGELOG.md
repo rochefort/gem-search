@@ -1,4 +1,7 @@
-## v0.2.3
+## v0.3.1
+- Fix gem.executables refs:b7c9c6d
+
+## v0.3.0
 - Add exact option  
 use exact matching when specified `exact` option.
 - Update gems
