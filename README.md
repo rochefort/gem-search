@@ -100,6 +100,20 @@ intentmedia-capybara-webkit (0.7.2.4)                  1796      6245 http://git
 ...
 ```
 
+### Use exact match
+
+	gem-search -e `keyword'
+
+e.g.:
+```
+$ gem-search -e rails
+Searching .
+NAME                                                DL(ver)   DL(all) HOMEPAGE
+-------------------------------------------------- -------- --------- ------------------------------------------------------------
+rails (5.0.2)                                        605263  93503475 http://rubyonrails.org
+```
+
+
 ### Do not show Homepage URL
 	gem-search `keyword' --no-homepage
 

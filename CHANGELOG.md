@@ -1,3 +1,11 @@
+## v0.2.3
+- Add exact option  
+use exact matching when specified `exact` option.
+- Update gems
+
+## v0.2.2
+- Refactor
+
 ## v0.2.1
 - Update gems [88da69c]
 
