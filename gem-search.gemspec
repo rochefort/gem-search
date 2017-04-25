@@ -22,7 +22,8 @@ Gem::Specification.new do |gem|
   gem.description   = gem.summary
 
   gem.files         = `git ls-files -z`.split("\x0")
-  gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
+  gem.bindir        = "exe"
+  gem.executables   = gem.files.grep(%r{^exe/}) { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "gem-search"
   gem.require_paths = ["lib"]
