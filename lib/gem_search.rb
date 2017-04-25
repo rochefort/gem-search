@@ -1,7 +1,4 @@
 module GemSearch
-  require "mem"
-  require "slop"
-
   RUBYGEMS_URL = "https://rubygems.org"
 
   require "gem_search/command_builder"

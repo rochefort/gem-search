@@ -1,3 +1,6 @@
+require "mem"
+require "slop"
+
 module GemSearch
   class CommandBuilder
     include Mem
