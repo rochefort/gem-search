@@ -54,6 +54,7 @@ webkit2-gtk (3.0.7)                                     421      2178 http://rub
 bitium-capybara-webkit (1.1.1)                         1208      1208 http://github.com/thoughtbot/capybara-webkit
 imseng-capybara-webkit (0.12.1)                        1199      1199 http://github.com/imseng/capybara-webkit
 node-webkit-bootstrap (1.0.0)                           873       873 https://github.com/audiosocket/node-webkit-bootstrap```
+```
 
 ### Sorted by gem name
 
