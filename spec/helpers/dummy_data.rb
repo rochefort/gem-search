@@ -4,7 +4,7 @@ module DummyData
 
   def dummy_search_result_sorted_by_all
     <<-'EOS'.unindent
-      |Searching .
+      |Searching ..
       |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
       |-------------------------------------------------- -------- --------- ------------------------------------------------------------
       |factory_girl (3.6.0)                                    541   2042859 https://github.com/thoughtbot/factory_girl                  
@@ -15,7 +15,7 @@ module DummyData
 
   def dummy_search_result_sorted_by_ver
     <<-'EOS'.unindent
-      |Searching .
+      |Searching ..
       |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
       |-------------------------------------------------- -------- --------- ------------------------------------------------------------
       |factory_girl_rails (3.5.0)                            39724   1238780 http://github.com/thoughtbot/factory_girl_rails             
@@ -26,7 +26,7 @@ module DummyData
 
   def dummy_search_result_sorted_by_name
     <<-'EOS'.unindent
-      |Searching .
+      |Searching ..
       |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
       |-------------------------------------------------- -------- --------- ------------------------------------------------------------
       |factory_girl (3.6.0)                                    541   2042859 https://github.com/thoughtbot/factory_girl                  
@@ -37,7 +37,7 @@ module DummyData
 
   def dummy_search_results_multiple_pages
     <<-'EOS'.unindent
-      |Searching ...
+      |Searching ....
       |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
       |-------------------------------------------------- -------- --------- ------------------------------------------------------------
       |autotest-cucumber-notification (0.0.6)                 1027      3607 https://github.com/evrone/autotest-cucumber-notification    

@@ -7,7 +7,6 @@ module GemSearch
     GEM_API    = "#{RUBYGEMS_URL}/api/v1/gems/%s.json"
 
     MAX_REQUEST_COUNT = 20
-    MAX_GEMS_PER_PAGE = 30 # It has been determined by Rubygems API
 
     def search(query, use_exact_match = false, &post_hook)
       gems = []
@@ -24,7 +23,7 @@ module GemSearch
         else
           gems += results
         end
-        break if search_ended?(results.size)
+        break if results.size.zero?
       end
       gems
     rescue Interrupt
@@ -37,10 +36,6 @@ module GemSearch
     end
 
     private
-
-      def search_ended?(size)
-        size < MAX_GEMS_PER_PAGE || size.zero?
-      end
 
       def request_ruby_gems_api(url)
         option = {}

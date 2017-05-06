@@ -57,7 +57,7 @@ RSpec.describe Commands::Run do
       context "with no sort option" do
         it "display rubygems ordering by DL(all)" do
           res = <<-'EOS'.unindent
-            |Searching .
+            |Searching ..
             |NAME                                                DL(ver)   DL(all)
             |-------------------------------------------------- -------- ---------
             |factory_girl (3.6.0)                                    541   2042859
@@ -190,7 +190,7 @@ RSpec.describe Commands::Run do
         it "is 50 characters" do
           # rubocop:disable Metrics/LineLength, Style/TrailingWhitespace
           res = <<-'EOS'.unindent
-            |Searching .
+            |Searching ..
             |NAME                                                DL(ver)   DL(all) HOMEPAGE                                                    
             |-------------------------------------------------- -------- --------- ------------------------------------------------------------
             |size_is_42_2345678901234567890123456789012 (0.0.1)      100      1000                                                             
@@ -210,7 +210,7 @@ RSpec.describe Commands::Run do
       it "is 51 characters" do
         # rubocop:disable Metrics/LineLength, Style/TrailingWhitespace
         res = <<-'EOS'.unindent
-          |Searching .
+          |Searching ..
           |NAME                                                 DL(ver)   DL(all) HOMEPAGE                                                    
           |--------------------------------------------------- -------- --------- ------------------------------------------------------------
           |size_is_43_23456789012345678901234567890123 (0.0.2)      200      2000                                                             
