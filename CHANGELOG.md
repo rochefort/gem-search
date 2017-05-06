@@ -1,3 +1,6 @@
+## v0.3.2
+- Fix return all search results refs:608d1c5
+
 ## v0.3.1
 - Fix gem.executables refs:b7c9c6d
 
