@@ -37,5 +37,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "webmock",     "~>3.0.1"
   gem.add_development_dependency "rake",        "~>12.0.0"
   gem.add_development_dependency "rspec",       "~>3.5.0"
-  gem.add_development_dependency "simplecov",   "~>0.14.1"
+  gem.add_development_dependency "simplecov",   "~>0.16.1"
 end
