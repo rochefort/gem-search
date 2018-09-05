@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
 
   gem.post_install_message = install_message
 
-  gem.add_dependency "slop", "~>4.4.1"
+  gem.add_dependency "slop", ">=4.4.1","<4.7.0"
   gem.add_dependency "mem",  "~>0.1.5"
 
   gem.add_development_dependency "webmock",     "~>3.4.2"
