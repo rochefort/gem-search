@@ -1,3 +1,6 @@
+## v0.3.3
+- Suppress stacktrace [3f306f8]
+
 ## v0.3.2
 - Fix return all search results refs:608d1c5
 
