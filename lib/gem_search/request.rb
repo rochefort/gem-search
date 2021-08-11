@@ -47,7 +47,7 @@ module GemSearch
             option[:proxy] = proxy
           end
         end
-        JSON.parse(open(url, option).read)
+        JSON.parse(URI.open(url, option).read)
       end
 
       def extract_exact_match(keyword, results)
