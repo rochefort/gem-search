@@ -1,5 +1,4 @@
 [![CircleCI](https://img.shields.io/circleci/project/rochefort/gem-search.svg)](https://circleci.com/gh/rochefort/gem-search)
-[![Dependency Status](http://img.shields.io/gemnasium/rochefort/gem-search.svg)](https://gemnasium.com/rochefort/gem-search)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/rochefort/gem-search)](https://codeclimate.com/github/rochefort/gem-search/maintainability)
 [![Gem Version](http://img.shields.io/gem/v/gem-search.svg)](http://badge.fury.io/rb/gem-search)
 
