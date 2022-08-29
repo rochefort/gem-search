@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "slop", ">=4.4.1", "<4.10.0"
   gem.add_dependency "mem",  "~>0.1.5"
 
-  gem.add_development_dependency "webmock",     "~>3.14.0"
+  gem.add_development_dependency "webmock",     "~>3.18.1"
   gem.add_development_dependency "rake",        "~>13.0.0"
   gem.add_development_dependency "rspec",       "~>3.11.0"
   gem.add_development_dependency "simplecov",   "~>0.21.1"
